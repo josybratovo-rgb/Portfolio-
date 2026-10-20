@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===== SEO : remplacez l'URL si votre domaine est différent ===== -->
+<title>Mes Œuvres | Affiches, illustrations et retouches — Josy Ratovo</title>
+<meta name="description" content="Galerie de Josy Ratovo : affiches, illustrations et retouches photo réalisées sur Photoshop et Illustrator. Découvrez chaque création en détail.">
+<meta name="author" content="Josy Ratovo">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#070a0e">
+<link rel="canonical" href="https://rajosyportfolio.netlify.app/oeuvres.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Josy Ratovo">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Mes Œuvres | Affiches, illustrations et retouches — Josy Ratovo">
+<meta property="og:description" content="Affiches, illustrations et retouches photo : la galerie de Josy Ratovo.">
+<meta property="og:url" content="https://rajosyportfolio.netlify.app/oeuvres.html">
+<meta property="og:image" content="https://rajosyportfolio.netlify.app/image/affiche-grand-illustrator-josy-ratovo.png">
+<meta property="og:image:alt" content="Affiche Grand Opening créée par Josy Ratovo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mes Œuvres — Josy Ratovo">
+<meta name="twitter:description" content="Affiches, illustrations et retouches photo.">
+<meta name="twitter:image" content="https://rajosyportfolio.netlify.app/image/affiche-grand-illustrator-josy-ratovo.png">
+<!-- ===== Fin SEO (les données structurées de la galerie sont générées plus bas dans le script) ===== -->
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--bg-dark:#070a0e;--card-bg:#16191d;--text-main:#fff;--orange-accent:#e05e00;--blue-btn:#0a435c;--blue-hover:#0d5575;--nav-bg:#0b2e3b}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',Arial,sans-serif;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-user-drag:none}
+body{background:var(--bg-dark);color:var(--text-main);padding:0 20px 80px;display:flex;flex-direction:column;align-items:center;min-height:100vh;overflow-x:hidden}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.header-nav{position:sticky;top:0;width:100%;background:var(--nav-bg);display:flex;justify-content:center;padding:12px 20px;margin-bottom:25px;box-shadow:0 4px 15px rgba(0,0,0,.5);z-index:1000}
+.works-nav{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:1100px}
+.nav-links-right{display:flex;align-items:center;gap:20px}
+.works-nav a{color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:8px 16px;border-radius:6px;transition:all .3s;display:flex;align-items:center;gap:8px}
+.works-nav a.active,.works-nav a:hover{color:#38bdf8;background:rgba(255,255,255,.08)}
+.nav-home-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.filter-scroll-wrapper{width:100%;max-width:1100px;margin-bottom:25px}
+.filter-scroll-container{display:flex;gap:12px;overflow-x:auto;padding:5px 0;scrollbar-width:none}
+.filter-scroll-container::-webkit-scrollbar{display:none}
+.filter-chip{background:var(--card-bg);color:#fff;border:1px solid rgba(255,255,255,.1);padding:9px 20px;font-size:14px;font-weight:600;border-radius:20px;cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0;display:flex;align-items:center;gap:8px}
+.filter-chip.active,.filter-chip:hover{background:var(--orange-accent);border-color:var(--orange-accent);box-shadow:0 4px 12px rgba(224,94,0,.3)}
+.works-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;width:100%;max-width:1100px}
+.video-card{background:var(--card-bg);border-radius:16px;padding:16px;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.05);animation:pop .5s ease both;transition:transform .3s,border-color .3s}
+.video-card:hover{transform:translateY(-5px);border-color:rgba(224,94,0,.3)}
+@keyframes pop{from{opacity:0;transform:translateY(25px) scale(.95)}to{opacity:1;transform:none}}
+.thumb{position:relative;width:100%;height:280px;border-radius:12px;overflow:hidden;background:#000;cursor:pointer;margin-bottom:14px}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s;pointer-events:none}
+.video-card:hover .thumb img{transform:scale(1.05)}
+.expand-icon{position:absolute;bottom:12px;right:12px;background-color:rgba(7,10,14,.75);color:#fff;width:36px;height:36px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:14px;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.2);transition:all .3s ease;z-index:5;pointer-events:none}
+.thumb:hover .expand-icon{background-color:var(--orange-accent);border-color:var(--orange-accent);transform:scale(1.15);box-shadow:0 4px 12px rgba(224,94,0,.4)}
+.badge{position:absolute;top:10px;left:10px;background:rgba(7,10,14,.75);backdrop-filter:blur(4px);padding:4px 10px;border-radius:12px;font-size:11px;font-weight:600;border:1px solid rgba(255,255,255,.15);z-index:2}
+.video-title{font-size:16px;font-weight:700;margin-bottom:6px;padding:0 4px}
+.card-desc-preview{font-size:13px;color:#94a3b8;padding:0 4px;margin-bottom:14px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-divider{height:1px;background:rgba(255,255,255,.1);margin-bottom:10px;margin-top:auto}
+.card-actions{display:flex;justify-content:flex-start;align-items:center;padding:0 4px}
+.heart{position:relative;width:45px;height:45px;display:flex;justify-content:center;align-items:center;cursor:pointer}
+.heart button{background:none;border:none;color:var(--orange-accent);font-size:42px;cursor:pointer;display:flex;transition:transform .2s}
+.heart:hover button{transform:scale(1.15)}
+.heart-count{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);font-size:11px;font-weight:bold;pointer-events:none}
+.heart.unliked .heart-count{color:var(--orange-accent)}
+.empty{grid-column:1/-1;text-align:center;color:#a0aec0;padding:40px 0}
+.player-modal{position:fixed;inset:0;background:rgba(7,10,14,.95);z-index:2000;display:flex;justify-content:center;align-items:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;cursor:zoom-out;padding:20px}
+.player-modal.show{opacity:1;visibility:visible}
+.lightbox-content{display:flex;flex-direction:column;align-items:center;max-width:900px;width:100%;cursor:default}
+.lightbox-img{max-width:100%;max-height:70vh;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.8);transform:scale(.9);transition:transform .4s cubic-bezier(.165,.84,.44,1);object-fit:contain}
+.player-modal.show .lightbox-img{transform:scale(1)}
+.lightbox-text{margin-top:15px;background:var(--card-bg);padding:15px 20px;border-radius:10px;border:1px solid rgba(255,255,255,.1);width:100%;max-width:600px;text-align:center}
+.lightbox-title{font-size:18px;font-weight:bold;color:#38bdf8;margin-bottom:6px}
+.lightbox-desc{font-size:14px;color:#cbd5e1;line-height:1.4}
+.player-close{position:absolute;top:20px;right:28px;font-size:35px;cursor:pointer;transition:color .2s;color:var(--text-main)}
+.player-close:hover{color:var(--orange-accent)}
+.share-widget{position:fixed;bottom:30px;right:30px;z-index:1500;display:flex;flex-direction:column;align-items:flex-end;gap:12px;transition:opacity .3s}
+.player-modal.show~.share-widget{opacity:0;visibility:hidden}
+.share-fab{width:58px;height:58px;border-radius:50%;border:none;background:var(--orange-accent);color:#fff;font-size:22px;cursor:pointer;display:flex;justify-content:center;align-items:center;box-shadow:0 6px 20px rgba(224,94,0,.45);transition:transform .3s,background .3s}
+.share-fab:hover{transform:scale(1.08)}
+.share-widget.open .share-fab{background:#b84a00}
+.share-menu{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.share-item{display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;color:#fff;opacity:0;transform:translateY(15px) scale(.9);pointer-events:none;transition:opacity .25s,transform .25s}
+.share-widget.open .share-item{opacity:1;transform:none;pointer-events:auto}
+.share-label{background:var(--card-bg);border:1px solid rgba(255,255,255,.1);padding:6px 12px;border-radius:8px;font-size:13px;font-weight:600;white-space:nowrap}
+.share-circle{width:44px;height:44px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:18px;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.wa{background:#25d366}.fb{background:#1877f2}.copy{background:var(--blue-btn)}.native{background:#6b46c1}
+.share-toast{position:absolute;right:70px;bottom:14px;background:var(--card-bg);border:1px solid var(--orange-accent);padding:9px 14px;border-radius:8px;font-size:13px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+.share-toast.show{opacity:1}
+@media (max-width:600px){
+body{padding:50px 15px 90px}
+.header-nav{position:fixed;top:auto;bottom:0;left:0;right:0;margin:0;padding:8px 0;background:#05161d;border-top:1px solid rgba(255,255,255,.08)}
+.works-nav{justify-content:space-around}
+.nav-home-btn{position:fixed;top:12px;left:15px;z-index:1001;background:var(--nav-bg);border-radius:50%;width:40px;height:40px;padding:0!important;justify-content:center}
+.nav-home-btn span{display:none}
+.nav-links-right{width:100%;justify-content:space-around;gap:0}
+.works-nav a{flex-direction:column;gap:4px;font-size:11px;padding:6px 10px}
+.works-nav a i{font-size:18px}
+.filter-scroll-wrapper{margin-top:10px}
+.share-widget{bottom:85px;right:18px}
+.share-fab{width:52px;height:52px;font-size:20px}
+.share-toast{right:64px;bottom:11px}
+}
+</style>
+</head>
+<body oncontextmenu="return false;">
+
+<header class="header-nav">
+<nav class="works-nav" aria-label="Navigation principale">
+<a href="index.html" class="nav-home-btn" title="Retour à l'accueil"><i class="fas fa-home"></i><span>Accueil</span></a>
+<div class="nav-links-right">
+<a href="#" class="active"><i class="fas fa-image"></i>Image</a>
+<a href="vidéo.html"><i class="fas fa-video"></i>Vidéo</a>
+<a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+<a href="index.html#contact"><i class="fas fa-envelope"></i>Contact</a>
+</div>
+</nav>
+</header>
+
+<h1 class="sr-only">Mes œuvres : affiches, illustrations et retouches photo de Josy Ratovo</h1>
+
+<div class="filter-scroll-wrapper">
+<div class="filter-scroll-container" id="filters">
+<button class="filter-chip active" data-filter="tous"><i class="fas fa-border-all"></i> Tous</button>
+<button class="filter-chip" data-filter="affiche"><i class="fas fa-bullhorn"></i> Affiche</button>
+<button class="filter-chip" data-filter="illustration"><i class="fas fa-palette"></i> Illustration</button>
+<button class="filter-chip" data-filter="retouche"><i class="fas fa-magic"></i> Retouche</button>
+</div>
+</div>
+
+<main class="works-grid" id="grid"></main>
+<noscript><p class="empty">Activez JavaScript pour voir la galerie : affiches, illustrations et retouches photo de Josy Ratovo.</p></noscript>
+
+<div class="player-modal" id="modal" onclick="closePlayer()">
+<i class="fas fa-times player-close"></i>
+<div class="lightbox-content" onclick="event.stopPropagation()">
+<img src="" alt="Plein écran" class="lightbox-img" id="lightboxImg">
+<div class="lightbox-text">
+<h3 class="lightbox-title" id="lightboxTitle"></h3>
+<p class="lightbox-desc" id="lightboxDesc"></p>
+</div>
+</div>
+</div>
+
+<div class="share-widget" id="shareWidget">
+<div class="share-menu">
+<button class="share-item" onclick="shareTo('whatsapp')"><span class="share-label">WhatsApp</span><span class="share-circle wa"><i class="fab fa-whatsapp"></i></span></button>
+<button class="share-item" onclick="shareTo('facebook')"><span class="share-label">Facebook</span><span class="share-circle fb"><i class="fab fa-facebook-f"></i></span></button>
+<button class="share-item" onclick="shareTo('copy')"><span class="share-label">Copier le lien</span><span class="share-circle copy"><i class="fas fa-link"></i></span></button>
+<button class="share-item" id="nativeItem" onclick="shareTo('native')" style="display:none"><span class="share-label">Autres apps</span><span class="share-circle native"><i class="fas fa-ellipsis-h"></i></span></button>
+</div>
+<button class="share-fab" id="shareFab" onclick="toggleShare()" aria-label="Partager mon portfolio"><i class="fas fa-share-alt" id="shareIcon"></i></button>
+<div class="share-toast" id="toast">Lien copié !</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore, doc, onSnapshot, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyCBv8OFQyvjvSwYvPKS6A-Nc936I2ag8y8",
+authDomain: "portfolio-josy.firebaseapp.com",
+projectId: "portfolio-josy",
+storageBucket: "portfolio-josy.firebasestorage.app",
+messagingSenderId: "49013469804",
+appId: "1:49013469804:web:5a72c64ddc9652cdf71e49",
+measurementId: "G-3N3Z537MDP"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// FIRESTORE STATS
+const statsDocRef = doc(db, "portfolio", "stats");
+
+const OEUVRES = [
+{ docId:'Hardwork', src:'image/hardwork-illustration-josy-ratovo.png', title:'99% Hard Work — Création graphique', cat:'illustration',
+desc:'Création d’une composition visuelle autour de l’idée que le travail et la persévérance dépassent le talent seul. Travail sur la lumière, et la typographie pour renforcer le message..' },
+{ docId:'affiche-grand', src:'image/affiche-grand-illustrator-josy-ratovo.png', title:'Grand Opening Poster', cat:'affiche',
+desc:'Conception géométrique au style moderne. Fond violet rehaussé de motifs vectoriels et halftones, avec un bloc central incliné attirant l’attention.' },
+{ docId:'affiche-dj23', src:'image/affiche-illustrator-dj23-josy-ratovo.png', title:'DJ23 Poster', cat:'affiche',
+desc:'Affiche pour festival de musique électronique. Palette sombre structurée autour d’un cœur circulaire évoquant les ondes sonores et les vinyles.' },
+{ docId:'Nike', src:'image/nike-affiche-josy-ratovo.jpg', title:'Affiche Nike', cat:'affiche',
+desc:'Conception d\'une affiche promotionnelle pour la basket Nike. Intégration d\'effets de fluides 3D/ et composition épurée axée sur un style moderne.' },
+{ docId:'cr7-illustration', src:'image/cr7-josy-ratovo.png', title:'CR7 Artwork', cat:'illustration',
+desc:'Incrustation complexe combinant un portrait expressif, un effet de déchirure papier texturé.' },
+{ docId:'josy-project', src:'image/moodboard-josy-ratovo.jpg', title:'Moodboard', cat:'illustration',
+desc:'Composition visuelle type moodboard . Traitement désaturé pour un aspect brut et focalisé.' },
+{ docId:'venty-project', src:'image/venty.jpg', title:'Venty Project', cat:'illustration',
+desc:'Concept visuel moderne et épuré mettant en avant l’univers graphique de la plateforme Venty. Le logo est structuré en forme de cœur pour symboliser la solidarité humaine, associé à la couleur orange évoquant la chaleur, l’entraide et l’engagement solidaire.' },
+{ docId:'miles-morales', src:'image/miles-josy-ratovo.png', title:'Miles Morales Concept', cat:'illustration',
+desc:'Artwork dynamique capturant l’essence urbaine et l’action du personnage avec des contrastes vifs.' },
+{ docId:'robot-vs', src:'image/robot-futuriste-photoshop-josy-ratovo.png', title:'Robot Concept', cat:'illustration',
+desc:'Compositing digital minutieux où chaque élément. Le robot, la maison, l’humain, la voiture et le feu — a été assemblé et incrusté élément par élément pour créer une scène futuriste.' },
+{ docId:'retouche-2', src:'image/retouche-cinématique-rue-josy-ratovo.png', title:'Retouche Photo — Rue cinématique', cat:'retouche',
+desc:'Correction colorimétrique et harmonisation des ombres pour donner du relief et un style cinématique à une scène de rue.' },
+{ docId:'retouche-3', src:'image/retouche-plage-couchée-du-soleil-josy-ratovo.png', title:'Retouche Plage — Coucher de soleil', cat:'retouche',
+desc:'Ajustement de la plage dynamique et étalonnage des tons chauds pour rehausser les contrastes sur mon portrait en bord de mer.' },
+{ docId:'retouche-4', src:'image/retouche4.png', title:'Retouche Photo — Enfants au soleil couchant', cat:'retouche',
+desc:'Débouchage des ombres et rattrapage de contre-jour pour faire ressortir les détails du groupe d\'enfants et valoriser le paysage au soleil couchant.' },
+{ docId:'retouche-5', src:'image/retouche5.png', title:'Retouche Photo — Lumière rasante', cat:'retouche',
+desc:'Optimisation de la lumière rasante et ajustement des hautes lumières pour valoriser la texture.' },
+{ docId:'retouche-6', src:'image/retouche-couché-josy-ratovo.jpg', title:'Retouche Photo — Lumière dorée', cat:'retouche',
+desc:'Correction colorimétrique et rééquilibrage de l\'exposition pour intensifier la lumière dorée du coucher de soleil tout en révélant les détails des ombres.' }
+];
+
+const LABELS = { affiche:'Affiche', illustration:'Illustration', retouche:'Retouche' };
+const BASE = 'https://rajosyportfolio.netlify.app/';
+
+// SEO : données structurées de la galerie, générées depuis la liste ci-dessus
+(function(){
+const ld = document.createElement('script');
+ld.type = 'application/ld+json';
+ld.textContent = JSON.stringify({
+"@context":"https://schema.org",
+"@type":"CollectionPage",
+"name":"Mes Œuvres — Josy Ratovo",
+"url":BASE+'oeuvres.html',
+"inLanguage":"fr",
+"author":{"@type":"Person","name":"Josy Ratovo"},
+"mainEntity":{"@type":"ItemList","itemListElement":OEUVRES.map((v,i)=>({
+"@type":"ListItem","position":i+1,
+"item":{"@type":"ImageObject","name":v.title.trim(),"description":v.desc,"contentUrl":BASE+encodeURI(v.src),"creator":{"@type":"Person","name":"Josy Ratovo"}}
+}))}
+});
+document.head.appendChild(ld);
+})();
+
+let likesMap = {};
+let currentFilter = 'tous';
+const grid = document.getElementById('grid');
+
+// ÉCOUTEUR TEMPS RÉEL
+onSnapshot(statsDocRef, (snapshot) => {
+if (snapshot.exists()) { likesMap = snapshot.data(); }
+render();
+}, (error) => {
+console.warn("Firestore inaccessible, mode local.");
+render();
+});
+
+function render() {
+const list = OEUVRES.filter(item => currentFilter === 'tous' || item.cat === currentFilter);
+grid.innerHTML = list.length ? '' : '<p class="empty">Aucune œuvre dans cette catégorie pour le moment.</p>';
+
+list.forEach((v, i) => {
+const isLiked = localStorage.getItem('liked_' + v.docId) === 'true';
+const likesCount = likesMap[v.docId] || 0;
+const altText = v.title.trim() + ' — ' + (LABELS[v.cat] || v.cat) + ' par Josy Ratovo';
+
+const card = document.createElement('article');
+card.className = 'video-card';
+card.style.animationDelay = (i * 0.05) + 's';
+card.innerHTML = `
+<div class="thumb">
+<img src="${v.src}" alt="${altText}" loading="${i < 3 ? 'eager' : 'lazy'}" decoding="async">
+<span class="badge">${LABELS[v.cat] || v.cat}</span>
+<div class="expand-icon" title="Agrandir l'image"><i class="fas fa-expand"></i></div>
+</div>
+<h2 class="video-title">${v.title}</h2>
+<div class="card-desc-preview">${v.desc || ''}</div>
+<div class="card-divider"></div>
+<div class="card-actions">
+<div class="heart ${isLiked ? '' : 'unliked'}" data-docid="${v.docId}">
+<button aria-label="Aimer cette œuvre"><i class="${isLiked ? 'fas' : 'far'} fa-heart"></i></button>
+<span class="heart-count">${likesCount}</span>
+</div>
+</div>`;
+
+card.querySelector('.thumb').addEventListener('click', () => openLightbox(v.src, v.title, v.desc));
+card.querySelector('.heart').addEventListener('click', function() { handleLike(this, v.docId); });
+
+grid.appendChild(card);
+});
+}
+
+document.getElementById('filters').addEventListener('click', e => {
+const chip = e.target.closest('.filter-chip');
+if (!chip) return;
+document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+chip.classList.add('active');
+currentFilter = chip.dataset.filter;
+render();
+});
+
+async function handleLike(el, docId) {
+const icon = el.querySelector('i');
+const span = el.querySelector('.heart-count');
+let n = parseInt(span.innerText) || 0;
+const isCurrentlyUnliked = el.classList.contains('unliked');
+
+const updatePayload = {};
+if (isCurrentlyUnliked) {
+el.classList.remove('unliked');
+icon.className = 'fas fa-heart';
+span.innerText = n + 1;
+localStorage.setItem('liked_' + docId, 'true');
+updatePayload[docId] = increment(1);
+} else {
+el.classList.add('unliked');
+icon.className = 'far fa-heart';
+span.innerText = Math.max(0, n - 1);
+localStorage.removeItem('liked_' + docId);
+updatePayload[docId] = increment(-1);
+}
+
+try {
+await updateDoc(statsDocRef, updatePayload);
+} catch (e) {
+try {
+await setDoc(statsDocRef, updatePayload, { merge: true });
+} catch (err) { console.log("Sauvegarde locale active"); }
+}
+}
+
+// LIGHTBOX
+const modal = document.getElementById('modal');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxTitle = document.getElementById('lightboxTitle');
+const lightboxDesc = document.getElementById('lightboxDesc');
+
+window.openLightbox = function(src, title, desc) {
+lightboxImg.src = src;
+lightboxImg.alt = title;
+lightboxTitle.textContent = title;
+lightboxDesc.textContent = desc || "Aucune description disponible pour cette œuvre.";
+modal.classList.add('show');
+closeShare();
+};
+
+window.closePlayer = function() { modal.classList.remove('show'); };
+
+// WIDGET PARTAGE
+const SHARE_URL = 'https://rajosyportfolio.netlify.app/';
+const SHARE_TITLE = 'Josy Ratovo — Portfolio';
+const SHARE_TEXT = 'Découvre mes créations visuelles :';
+const widget = document.getElementById('shareWidget');
+const icon = document.getElementById('shareIcon');
+const toast = document.getElementById('toast');
+
+if (navigator.share) document.getElementById('nativeItem').style.display = 'flex';
+
+window.toggleShare = function() {
+const open = widget.classList.toggle('open');
+icon.className = open ? 'fas fa-times' : 'fas fa-share-alt';
+};
+
+window.closeShare = function() {
+widget.classList.remove('open');
+icon.className = 'fas fa-share-alt';
+};
+
+function showToast(msg) {
+toast.textContent = msg;
+toast.classList.add('show');
+setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+window.shareTo = async function(p) {
+const url = SHARE_URL;
+if (p === 'whatsapp') window.open('https://wa.me/?text=' + encodeURIComponent(SHARE_TEXT + ' ' + url), '_blank', 'noopener');
+if (p === 'facebook') window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank', 'noopener');
+if (p === 'copy') {
+try { await navigator.clipboard.writeText(url); showToast('Lien copié !'); }
+catch (e) { prompt('Copie ce lien :', url); }
+}
+if (p === 'native') { try { await navigator.share({ title: SHARE_TITLE, text: SHARE_TEXT, url }); } catch (e) {} }
+closeShare();
+};
+
+document.addEventListener('keydown', (e) => {
+if (
+e.key === 'F12' ||
+(e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) ||
+(e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S'))
+) {
+e.preventDefault();
+}
+});
+
+document.addEventListener('click', e => { if (!widget.contains(e.target)) closeShare(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeShare(); closePlayer(); } });
+
+render();
+</script>
+</body>
+</html>

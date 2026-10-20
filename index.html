@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ2EWFFFQJ"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-TQ2EWFFFQJ');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===== SEO : remplacez l'URL si votre domaine est différent ===== -->
+<title>Josy Ratovo | Créateur multimédia, design & montage vidéo</title>
+<meta name="description" content="Portfolio de Josy Ratovo, créateur multimédia : affiches, retouche photo, montage vidéo, motion design et UI/UX. Découvrez mes œuvres et contactez-moi.">
+<meta name="author" content="Josy Ratovo">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="canonical" href="https://rajosyportfolio.netlify.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Josy Ratovo">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Josy Ratovo | Créateur multimédia, design & montage vidéo">
+<meta property="og:description" content="Affiches, retouche photo, montage vidéo, motion design et UI/UX : le portfolio de Josy Ratovo.">
+<meta property="og:url" content="https://rajosyportfolio.netlify.app/">
+<meta property="og:image" content="https://rajosyportfolio.netlify.app/image/Picsart_26-07-13_17-01-25-362.png">
+<meta property="og:image:alt" content="Josy Ratovo, créateur multimédia">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Josy Ratovo | Créateur multimédia">
+<meta name="twitter:description" content="Affiches, retouche photo, montage vidéo, motion design et UI/UX.">
+<meta name="twitter:image" content="https://rajosyportfolio.netlify.app/image/Picsart_26-07-13_17-01-25-362.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebSite","@id":"https://rajosyportfolio.netlify.app/#website","url":"https://rajosyportfolio.netlify.app/","name":"Josy Ratovo — Portfolio","inLanguage":"fr","publisher":{"@id":"https://rajosyportfolio.netlify.app/#person"}},
+{"@type":"Person","@id":"https://rajosyportfolio.netlify.app/#person","name":"Josy Ratovo","alternateName":["Ratovoarison Josia","Josia Ratovoarison"],"jobTitle":"Créateur multimédia","url":"https://rajosyportfolio.netlify.app/","image":"https://rajosyportfolio.netlify.app/image/Picsart_26-07-13_17-01-25-362.png","description":"Créateur multimédia : design graphique, retouche photo, montage vidéo, motion design et UI/UX.","knowsAbout":["Design graphique","Retouche photo","Montage vidéo","Motion design","UI/UX","Affiches"]}
+]}
+</script>
+<!-- ===== Fin SEO ===== -->
+
+<style>
+:root{--bg-dark:#0a0a0a;--bg-card:#0c141c;--blue-neon:#00b4d8;--blue-glow:#00e5ff;--blue-track:#2c3e50;--orange-neon:#ff6b00;--orange-glow:#ff8533;--text-main:#fff;--text-muted:#b0c4de;--space-xs:4px;--space-sm:8px;--space-md:16px;--space-lg:24px;--space-xl:32px;--space-xxl:80px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background-color:var(--bg-dark);color:var(--text-main);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;padding-top:80px;overflow-x:hidden;transition:filter .3s ease,opacity .3s ease}
+.fade-in-section{opacity:0;transform:translateY(30px);transition:opacity .8s ease-out,transform .8s ease-out}
+.fade-in-section.visible{opacity:1;transform:translateY(0)}
+.skeleton{background:linear-gradient(90deg,#121e2b 25%,#1c2d3d 50%,#121e2b 75%);background-size:200% 100%;animation:skeleton-loading 1.5s infinite}
+@keyframes skeleton-loading{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.img-wrapper{position:relative;overflow:hidden}
+.img-wrapper img{opacity:0;transition:opacity .5s ease-in-out}
+.img-wrapper img.loaded{opacity:1}
+.protection-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;background:transparent}
+header{position:fixed;top:0;left:0;width:100%;background:rgba(10,10,10,.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.05);z-index:1000}
+.navbar{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:var(--space-md) var(--space-lg)}
+.logo{font-weight:bold;font-size:1.3rem;color:var(--text-main);text-decoration:none;font-family:'Courier New',Courier,monospace;transition:transform .3s}
+.logo:hover{transform:scale(1.05)}
+.logo span{color:var(--blue-neon)}
+.nav-links{display:flex;list-style:none;gap:var(--space-lg)}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:1rem;font-weight:500;position:relative;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;width:0;height:2px;bottom:-4px;left:0;background:var(--blue-glow);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-links a:hover{color:var(--blue-glow)}
+.hamburger{display:none;cursor:pointer;background:none;border:none;z-index:1100}
+.hamburger .bar{display:block;width:25px;height:3px;margin:5px auto;background:var(--text-main);transition:all .3s ease-in-out}
+.container{max-width:1100px;margin:0 auto;padding:20px var(--space-lg)}
+.hero-bento{display:grid;grid-template-columns:5fr 4fr 3fr;grid-template-areas:"title photo photo" "wide wide product";grid-auto-rows:minmax(240px,auto);gap:var(--space-md);padding:24px 0 40px;animation:fadeInRight 1s ease-out}
+.bento-card{border-radius:24px;overflow:hidden;position:relative;border:1px solid rgba(0,180,216,.2);transition:transform .3s,border-color .3s}
+.bento-card:hover{transform:translateY(-4px);border-color:var(--blue-neon)}
+.bento-card img{width:100%;height:100%;object-fit:cover;display:block}
+.bento-title{grid-area:title;background:linear-gradient(135deg,#12202c,#0c141c);padding:var(--space-xl);display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-md)}
+.bento-title h1{font-size:3.2rem;letter-spacing:-1px;line-height:1.05;animation:slideInLeft 1s ease-out}
+.bento-title .subtitle{font-size:1.2rem;color:var(--blue-neon);font-weight:500}
+.bento-mini{display:flex;gap:var(--space-md);align-items:stretch}
+.bento-thumb{width:96px;min-height:110px;flex-shrink:0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.bento-mini-text{display:flex;flex-direction:column;justify-content:center}
+.punchline{color:var(--text-muted);font-size:.95rem}
+.cta-container{display:flex;gap:var(--space-sm);width:100%}
+.btn{flex:1;padding:10px 16px;font-size:.85rem;font-weight:bold;text-align:center;text-decoration:none;border-radius:50px;cursor:pointer;transition:all .3s cubic-bezier(.25,.8,.25,1)}
+.btn-primary{background:var(--orange-neon);color:var(--bg-dark);border:2px solid var(--orange-neon);box-shadow:0 4px 15px rgba(255,107,0,.3)}
+.btn-primary:hover{background:var(--orange-glow);border-color:var(--orange-glow);box-shadow:0 0 25px var(--orange-glow);transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--orange-glow);border:2px solid var(--orange-neon)}
+.btn-secondary:hover{background:rgba(255,107,0,.1);box-shadow:0 0 15px rgba(255,107,0,.2);transform:translateY(-2px)}
+.bento-photo{grid-area:photo;border-radius:24px 24px 24px 80px}
+.bento-wide{grid-area:wide;border-radius:24px 80px 24px 24px}
+.bento-product{grid-area:product;background:var(--bg-card)}
+.bento-label{position:absolute;left:12px;bottom:12px;z-index:5;background:rgba(10,10,10,.75);backdrop-filter:blur(6px);color:var(--orange-glow);font-size:.75rem;font-weight:bold;text-transform:uppercase;letter-spacing:1px;padding:6px 12px;border-radius:50px}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-50px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeInRight{from{opacity:0;transform:translateX(50px)}to{opacity:1;transform:translateX(0)}}
+.projects-section{padding:var(--space-xxl) 0;border-top:1px solid rgba(255,255,255,.05)}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:var(--space-xl);margin-top:var(--space-xl);align-items:start}
+.project-card{background:var(--bg-card);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.03);transition:transform .3s cubic-bezier(.25,.8,.25,1),border-color .3s;display:flex;flex-direction:column}
+.project-card:hover{transform:translateY(-5px);border-color:rgba(0,180,216,.3)}
+.project-info{padding:var(--space-xl);flex:1}
+.project-tag{display:inline-block;font-size:.75rem;color:var(--blue-neon);text-transform:uppercase;font-weight:bold;letter-spacing:1px;margin-bottom:var(--space-sm)}
+.project-info h3{font-size:1.4rem;margin-bottom:var(--space-sm)}
+.project-info p{color:var(--text-muted);font-size:.95rem;margin-bottom:var(--space-lg)}
+.accordion-trigger{font-size:.9rem;color:var(--blue-glow);font-weight:bold;background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:var(--space-sm);padding:0;transition:color .3s}
+.accordion-trigger:hover{color:var(--text-main)}
+.accordion-trigger .icon{transition:transform .3s}
+.accordion-trigger.active .icon{transform:rotate(180deg)}
+.accordion-content{max-height:0;overflow:hidden;transition:max-height .6s cubic-bezier(.25,1,.5,1),opacity .3s;opacity:0;padding:0 var(--space-xl);background:rgba(10,10,10,.3)}
+.accordion-content.open{max-height:1200px;opacity:1;padding:var(--space-md) var(--space-xl) var(--space-xl)}
+.accordion-content p{font-size:.9rem;color:#e0e0e0;margin-bottom:var(--space-md)}
+.card-btn{display:inline-block;padding:var(--space-sm) var(--space-md);font-size:.85rem;font-weight:bold;color:var(--bg-dark);background:var(--blue-neon);border:none;border-radius:6px;text-decoration:none;transition:background-color .3s,transform .2s}
+.card-btn:hover{background:var(--blue-glow);transform:translateY(-1px)}
+.venty-img-wrapper{margin:var(--space-md) 0;border-radius:8px;border:1px solid rgba(0,180,216,.3);width:100%;background:transparent}
+.venty-img-wrapper img{width:100%;height:auto;display:block;border-radius:8px}
+.slider-container-3d{width:100%;height:380px;perspective:1000px;position:relative;display:flex;justify-content:center;align-items:center;overflow:hidden;background:rgba(5,10,14,.6);border-radius:12px 12px 0 0}
+.carousel-3d{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.25,1,.5,1)}
+.slide-card-3d{position:absolute;top:50%;left:50%;width:200px;height:300px;margin-left:-100px;margin-top:-150px;border-radius:10px;overflow:hidden;border:1px solid rgba(0,180,216,.3);box-shadow:0 10px 25px rgba(0,0,0,.7);transition:transform .8s cubic-bezier(.25,1,.5,1),opacity .8s ease,filter .8s ease;cursor:pointer}
+.slide-card-3d img{width:100%;height:100%;object-fit:cover;display:block}
+.slider-actions{padding:var(--space-md);text-align:center;background:var(--bg-card);border-top:1px solid rgba(255,255,255,.02)}
+.see-all-btn{display:inline-block;width:100%;padding:12px var(--space-lg);background:transparent;color:var(--blue-glow);border:2px solid var(--blue-neon);text-decoration:none;border-radius:6px;font-weight:bold;font-size:.9rem;transition:all .3s}
+.see-all-btn:hover{background:var(--blue-neon);color:var(--bg-dark);box-shadow:0 0 15px rgba(0,180,216,.4)}
+.about-section{padding:var(--space-xxl) 0;border-top:1px solid rgba(255,255,255,.05)}
+.section-title{font-size:2rem;margin-bottom:var(--space-xl);color:var(--blue-neon)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-xl);align-items:start}
+.about-bio p{margin-bottom:var(--space-md);font-size:.95rem;color:#e0e0e0}
+.highlight-list{list-style:none;margin-top:var(--space-md)}
+.highlight-list li{margin-bottom:var(--space-sm);padding-left:var(--space-lg);position:relative;font-size:.9rem}
+.highlight-list li::before{content:"•";color:var(--blue-neon);font-size:1.3rem;position:absolute;left:0;top:-3px}
+.highlight-list strong{color:var(--blue-glow)}
+.skills-container{background:var(--bg-card);padding:var(--space-xl);border-radius:12px;border:1px solid rgba(0,180,216,.15);box-shadow:0 10px 25px rgba(0,0,0,.3);width:100%}
+.skills-container h3{text-align:center;font-size:1.1rem;margin-bottom:var(--space-lg);color:#fff;text-transform:uppercase;letter-spacing:1px}
+.skill-group{margin-bottom:var(--space-lg)}
+.skill-labels{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:var(--space-sm);font-weight:500;color:#e0e0e0}
+.progress-bar-bg{background:var(--blue-track);width:100%;height:8px;border-radius:4px;position:relative;overflow:hidden}
+.progress-bar-fill{background:var(--blue-neon);height:100%;border-radius:4px;box-shadow:0 0 10px rgba(0,180,216,.6);position:absolute;left:0;top:0;width:0;transition:width 2s cubic-bezier(.25,1,.5,1)}
+.soft-skills-container{margin-top:var(--space-xl);background:var(--bg-card);padding:var(--space-xl);border-radius:12px;border:1px solid rgba(0,180,216,.15);box-shadow:0 10px 25px rgba(0,0,0,.3)}
+.soft-skills-container h3{font-size:1.1rem;margin-bottom:var(--space-lg);color:#fff;text-transform:uppercase;letter-spacing:1px}
+.soft-skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-md)}
+.soft-skill-item{display:flex;justify-content:space-between;align-items:center;padding:var(--space-md);background:rgba(15,23,42,.8);border:1px solid rgba(0,229,255,.25);border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.soft-skill-item span{font-size:.95rem;color:#fff;font-weight:500}
+.stars-wrapper{display:flex;gap:var(--space-xs);font-size:1.2rem}
+.star-filled{color:#00e5ff;text-shadow:0 0 8px rgba(0,229,255,.8)}
+.certif-card{margin-top:var(--space-xl);background:var(--bg-card);border:1px solid rgba(0,180,216,.25);border-radius:12px;padding:var(--space-xl);transition:border-color .3s,transform .3s}
+.certif-card:hover{border-color:var(--blue-neon);transform:translateY(-3px)}
+.certif-badge{display:inline-block;font-size:.75rem;color:var(--blue-neon);font-weight:bold;text-transform:uppercase;letter-spacing:1px;margin-bottom:var(--space-sm)}
+.certif-content{display:flex;gap:var(--space-xl);align-items:center;justify-content:space-between;margin-bottom:var(--space-lg)}
+/* NOUVEAU : le certificat UXY est aligné sous celui d'Orange (même mise en page, taille inchangée) */
+.certif-content1{display:flex;gap:var(--space-xl);align-items:center;justify-content:space-between}
+
+.certif-text h4{color:#fff;font-size:1.3rem;margin-bottom:var(--space-sm)}
+.certif-text p{color:var(--text-muted);font-size:1rem;margin:0}
+.certif-img-wrapper,.certif-img-wrapper2{flex-shrink:0;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:transform .3s,border-color .3s}
+.certif-img-wrapper{width:280px;height:160px}
+.certif-img-wrapper2{width:300px;height:300px}
+.certif-img-wrapper:hover,.certif-img-wrapper2:hover{transform:scale(1.03);border-color:var(--blue-glow)}
+.certif-img{width:100%;height:100%;object-fit:cover}
+.objective-section{padding:var(--space-xxl) 0;border-top:1px solid rgba(255,255,255,.05)}
+.objective-content{background:linear-gradient(135deg,#0c141c,#060b10);padding:40px;border-radius:16px;border:1px solid rgba(0,180,216,.1);max-width:800px;margin:0 auto;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.objective-content p{font-size:1.1rem;color:#e0e0e0;line-height:1.8;margin-bottom:var(--space-lg)}
+.contact-section{padding:var(--space-xxl) 0;border-top:1px solid rgba(255,255,255,.05);text-align:center}
+.contact-form{max-width:600px;margin:var(--space-xl) auto 0;background:var(--bg-card);padding:40px;border-radius:12px;border:1px solid rgba(255,255,255,.02);text-align:left;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.form-group{margin-bottom:var(--space-lg)}
+.form-group label{display:block;font-size:.9rem;color:var(--text-muted);margin-bottom:var(--space-sm)}
+.form-control{width:100%;padding:12px var(--space-md);background:rgba(10,10,10,.6);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:#fff;font-family:inherit;transition:border-color .3s}
+.form-control:focus{outline:none;border-color:var(--blue-neon)}
+textarea.form-control{resize:vertical;min-height:120px}
+.btn-submit{width:100%;background:var(--blue-neon);color:var(--bg-dark);border:none;margin-top:var(--space-lg);padding:14px;font-weight:bold;border-radius:6px;cursor:pointer;transition:background-color .3s,box-shadow .3s}
+.btn-submit:hover{background:var(--blue-glow);box-shadow:0 0 15px var(--blue-glow)}
+.form-status{margin-top:var(--space-md);font-size:.95rem;font-weight:bold;text-align:center;display:none}
+.whatsapp-container{margin-top:var(--space-xl);display:flex;justify-content:center}
+.btn-whatsapp{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-weight:600;font-size:.95rem;padding:12px var(--space-lg);border-radius:50px;text-decoration:none;box-shadow:0 4px 15px rgba(37,211,102,.3);transition:all .3s}
+.btn-whatsapp:hover{background:#1ebd56;transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,.4)}
+.whatsapp-icon{width:22px;height:22px;fill:#fff}
+.cv-download-section{width:100%;max-width:1100px;margin:var(--space-xl) 0;padding:0 4px}
+.cv-container{background:var(--bg-card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:var(--space-lg) var(--space-xl);display:flex;justify-content:space-between;align-items:center;gap:var(--space-lg);box-shadow:0 8px 24px rgba(0,0,0,.4);transition:border-color .3s,transform .3s}
+.cv-container:hover{border-color:rgba(224,94,0,.4);transform:translateY(-3px)}
+.cv-info{display:flex;align-items:center;gap:var(--space-lg)}
+.cv-icon-box{width:56px;height:56px;border-radius:12px;background:rgba(224,94,0,.12);border:1px solid rgba(224,94,0,.3);display:flex;justify-content:center;align-items:center;font-size:26px;color:var(--orange-neon);flex-shrink:0}
+.cv-text h3{font-size:18px;font-weight:600;color:var(--text-main);margin-bottom:var(--space-xs)}
+.cv-text p{font-size:14px;color:#a0aec0}
+.cv-download-btn{background:var(--orange-neon);color:#fff;text-decoration:none;font-weight:600;font-size:14px;padding:12px var(--space-lg);border-radius:8px;display:flex;align-items:center;gap:10px;white-space:nowrap;box-shadow:0 4px 15px rgba(224,94,0,.3);transition:all .3s}
+.cv-download-btn:hover{background:var(--orange-glow);transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,94,0,.5)}
+@media (max-width:768px){
+.hamburger{display:block}
+.nav-links{position:fixed;right:-100%;top:70px;flex-direction:column;background:rgba(10,10,10,.95);width:100%;height:calc(100vh - 70px);text-align:center;gap:40px;padding-top:50px;transition:.3s;backdrop-filter:blur(15px);border-top:1px solid rgba(255,255,255,.05)}
+.nav-links.active{right:0}
+.hero-bento{display:flex;flex-direction:column;gap:var(--space-lg);padding:20px 0}
+.bento-title{background:transparent;padding:0;border:none;text-align:center}
+.bento-title h1{font-size:2.5rem;margin-bottom:var(--space-xs)}
+.bento-title .subtitle{font-size:1.2rem;margin-bottom:var(--space-md)}
+.bento-mini{display:flex; justify-content:center}
+.bento-thumb{display:none}
+.punchline{text-align:center}
+.bento-photo{height:380px;border-radius:20px;border:1px solid rgba(0,180,216,.2)}
+.bento-wide,.bento-product{display:none!important}
+.cta-container{margin-top:var(--space-md);justify-content:center}
+.about-grid{grid-template-columns:1fr;gap:var(--space-xl)}
+.highlight-list li{text-align:left}
+.certif-content,.certif-content1{flex-direction:column;align-items:flex-start}
+.certif-img-wrapper,.certif-img-wrapper2{width:100%;height:180px}
+}
+@media (max-width:600px){
+.cv-container{flex-direction:column;text-align:center;padding:var(--space-md);gap:var(--space-md)}
+.cv-info{flex-direction:column;gap:var(--space-sm)}
+.cv-download-btn{width:100%;justify-content:center}
+}
+@media (max-width:480px){.slide-card-3d{width:150px;height:230px;margin-left:-75px;margin-top:-115px}}
+.hamburger.active .bar:nth-child(2){opacity:0}
+.hamburger.active .bar:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.hamburger.active .bar:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+</style>
+</head>
+<body>
+
+<header>
+<nav class="navbar" aria-label="Navigation principale">
+<a href="#" class="logo">Josy<span>Ratovo</span></a>
+<button class="hamburger" id="hamburger" aria-label="Ouvrir le menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+<ul class="nav-links" id="nav-links">
+<li><a href="#projets-preview">Mes Projets</a></li>
+<li><a href="#qui-suis-je">Qui suis-je</a></li>
+<li><a href="oeuvres.html">Mes Œuvres</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
+
+<main class="container">
+
+<!-- SECTION 1 : HERO BENTO -->
+<section class="hero-bento">
+<div class="bento-card bento-title">
+<div>
+<h1>Josy Ratovo</h1>
+<div class="subtitle">Créateur Multimédia</div>
+</div>
+<div class="bento-mini">
+<div class="bento-thumb img-wrapper skeleton">
+<img src="image/moodboard-josy-ratovo.jpg" alt="Moodboard de Josy Ratovo : code, sport, lecture et motivation" loading="eager" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');">
+<div class="protection-overlay"></div>
+</div>
+<div class="bento-mini-text"><p class="punchline">"Donner vie aux idées à travers le visuel."</p></div>
+</div>
+<div class="cta-container">
+<a href="oeuvres.html" class="btn btn-primary">Voir mes œuvres</a>
+<a href="#contact" class="btn btn-secondary">Contact</a>
+</div>
+</div>
+
+<!-- Photo principale : inchangée -->
+<div class="bento-card bento-photo img-wrapper skeleton">
+<img src="image/Picsart_26-07-13_17-01-25-362.png" alt="Josy Ratovo, créateur multimédia, designer graphique et monteur vidéo" style="object-position:70% 50%" loading="eager" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');">
+<div class="protection-overlay"></div>
+</div>
+
+<!-- NOUVEAU : couverture "PORTFOLIO" dans la grande carte du bas -->
+<div class="bento-card bento-wide img-wrapper skeleton">
+<img src="image/couverture-portfolio.png" alt="Couverture du portfolio de Josy Ratovo, interface de création" style="object-position:center 45%" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');">
+<div class="protection-overlay"></div>
+
+</div>
+
+<!-- NOUVEAU : image du blog dans la petite carte -->
+<div class="bento-card bento-product img-wrapper skeleton">
+<img src="image/blog.jpg" alt="Blog de Josy Ratovo" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');">
+<div class="protection-overlay"></div>
+
+</div>
+</section>
+
+<!-- SECTION 2 : PROJETS -->
+<section id="projets-preview" class="projects-section fade-in-section">
+<h2 class="section-title">Mes Projets Clés</h2>
+<div class="projects-grid">
+
+<div class="project-card" id="venty">
+<div class="project-info">
+<span class="project-tag">UI/UX & Web Dev</span>
+<h3>Venty <p style="display:inline;font-size:.9rem;color:var(--text-muted)">(en cours)</p></h3>
+<p>Une plateforme web conçue pour le suivi, la traçabilité et la gestion visuelle des actions sociales et des dons.</p>
+<button class="accordion-trigger" id="venty-trigger">[ Voir la présentation ] <span class="icon">▼</span></button>
+</div>
+<div class="accordion-content" id="venty-content">
+<p><strong>Venty</strong> est un projet d'application web axé sur la transparence des initiatives de solidarité et des projets RSE. La plateforme centralise les données des dons, génère des rapports visuels détaillés et offre un tableau de bord d'administration sécurisé pour suivre l'impact réel des contributions sur le terrain.</p>
+<div class="venty-img-wrapper img-wrapper skeleton">
+<img src="image/ventyscreen.png" alt="Interface de l'application Venty" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');">
+<div class="protection-overlay"></div>
+</div>
+<a href="#contact" class="card-btn">En savoir plus</a>
+</div>
+</div>
+
+<div class="project-card" id="audiovisuel-creation">
+<div class="slider-container-3d">
+<div class="carousel-3d" id="carousel3d">
+<div class="slide-card-3d img-wrapper skeleton"><img src="image/affiche-grand-illustrator-josy-ratovo.png" alt="Affiche Grand Opening" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');"><div class="protection-overlay"></div></div>
+<div class="slide-card-3d img-wrapper skeleton"><img src="image/venty.jpg" alt="Projet Venty, identité visuelle" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');"><div class="protection-overlay"></div></div>
+<div class="slide-card-3d img-wrapper skeleton"><img src="image/affiche-illustrator-dj23-josy-ratovo.png" alt="Affiche DJ23: illustration,illustratir,affiche,design" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');"><div class="protection-overlay"></div></div>
+<div class="slide-card-3d img-wrapper skeleton"><img src="image/moodboard-josy-ratovo.jpg" alt="Josy Ratovo, créateur multimédia: motivation,esthétique,picsart,mood" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');"><div class="protection-overlay"></div></div>
+</div>
+</div>
+<div class="project-info" style="padding-bottom:10px">
+<span class="project-tag">Audiovisuel & Création</span>
+<h3>Création Audiovisuelle & Graphique</h3>
+<p>Conception de bandes-annonces percutantes, d'edits rythmés et d'illustrations artistiques.</p>
+</div>
+<div class="slider-actions"><a href="oeuvres.html" class="see-all-btn">Tout voir</a></div>
+</div>
+
+</div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<div class="certif-card">
+<div class="certif-badge">Certification</div>
+<div class="certif-content">
+<div class="certif-text">
+<h4>Formation Design & Création Visuelle</h4>
+<p>Délivrée par <strong>Orange Digital Center</strong> — Formation intensive.</p>
+</div>
+<div class="certif-img-wrapper img-wrapper skeleton">
+<img src="image/orange.jpg" alt="Attestation de formation Design et Création Visuelle, Orange Digital Center" class="certif-img" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');">
+<div class="protection-overlay"></div>
+</div>
+</div>
+<div class="certif-content1">
+<div class="certif-text">
+<h4>Certificat d'achèvement</h4>
+<p>Délivrée par <strong>UXY</strong></p>
+</div>
+<div class="certif-img-wrapper2 img-wrapper skeleton">
+<img src="image/certifUI.png" alt="Certificat d'achèvement UI/UX délivré par UXY" class="certif-img" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');">
+<div class="protection-overlay"></div>
+</div>
+</div>
+</div>
+
+<!-- SECTION 3 : QUI SUIS-JE -->
+<section id="qui-suis-je" class="about-section fade-in-section">
+<h2 class="section-title">Qui suis-je ?</h2>
+<div class="about-grid">
+<div class="about-bio">
+<p>Je m'appelle <strong>RATOVOARISON Josia</strong>.</p>
+<p>Je transforme les idées en <strong>messages visuels clairs, attractifs et mémorables</strong>. À travers le design graphique, la photographie, la retouche, le montage vidéo, le motion design et l'UI/UX, je cherche à donner aux projets une identité qui leur ressemble et une manière plus forte de communiquer.</p>
+<ul class="highlight-list">
+<li><strong>Donner du sens :</strong> chaque création cherche à transmettre une idée, une émotion ou un message au-delà de l'esthétique.</li>
+<li><strong>Créer de l'impact :</strong> je travaille la composition, la lumière, le rythme et le design pour attirer l'attention et laisser une impression.</li>
+<li><strong>Allier créativité et précision :</strong> j'accorde autant d'importance à l'idée qu'à sa réalisation, afin de créer des visuels cohérents, soignés et adaptés à leur objectif.</li>
+</ul>
+</div>
+<div class="skills-container">
+<h3>Logiciels & Outils</h3>
+<div class="skill-group"><div class="skill-labels"><span>Photoshop</span><span>83%</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" data-percent="83%"></div></div></div>
+<div class="skill-group"><div class="skill-labels"><span>Illustrator</span><span>70%</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" data-percent="70%"></div></div></div>
+<div class="skill-group"><div class="skill-labels"><span>Premiere Pro</span><span>72%</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" data-percent="72%"></div></div></div>
+<div class="skill-group"><div class="skill-labels"><span>CapCut</span><span>90%</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" data-percent="90%"></div></div></div>
+<div class="skill-group"><div class="skill-labels"><span>Lightroom</span><span>65%</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" data-percent="65%"></div></div></div>
+<div class="skill-group"><div class="skill-labels"><span>After Effects</span><span>53%</span></div><div class="progress-bar-bg"><div class="progress-bar-fill" data-percent="53%"></div></div></div>
+</div>
+</div>
+
+<div class="soft-skills-container">
+<h3>Aptitudes & Atouts</h3>
+<div class="soft-skills-grid">
+<div class="soft-skill-item"><span>Esprit d'analyse</span><div class="stars-wrapper"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></div></div>
+<div class="soft-skill-item"><span>Persévérance</span><div class="stars-wrapper"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></div></div>
+<div class="soft-skill-item"><span>Créativité</span><div class="stars-wrapper"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></div></div>
+<div class="soft-skill-item"><span>Autonomie</span><div class="stars-wrapper"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></div></div>
+<div class="soft-skill-item"><span>Travail en équipe</span><div class="stars-wrapper"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></div></div>
+<div class="soft-skill-item"><span>Sens du détail</span><div class="stars-wrapper"><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span><span class="star-filled">★</span></div></div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 4 : PRODUCTION AUDIOVISUELLE -->
+<section id="audiovisuel" class="objective-section fade-in-section">
+<h2 class="section-title" style="text-align:center">Production Audiovisuelle & Montage</h2>
+<div class="objective-content" style="background:linear-gradient(135deg,#0c1c1a,#060b10);border-color:rgba(0,180,216,.2)">
+<p><strong>Je donne vie au mouvement et à l'identité visuelle.</strong></p>
+<p>Mon parcours dans le multimédia me permet de concevoir des contenus percutants, rythmés et calibrés pour capter l'attention dès les premières secondes :</p>
+<ul class="highlight-list" style="margin:15px 0 20px">
+<li><strong>Bandes-annonces & Teasers :</strong> Conception d'introductions narratives et de trailers captivants pour teaser des projets, des concepts ou des événements.</li>
+<li><strong>Video Edits & Post-Production :</strong> Montage dynamique, transitions fluides, sound design immersif et synchronisation audio-vidéo chirurgicale.</li>
+<li><strong>Illustrations & Motion Design :</strong> Création d'univers graphiques, d'illustrations sur mesure et de courtes animations.</li>
+</ul>
+<div style="text-align:center;margin-top:40px">
+<a href="vidéo.html" class="btn btn-primary" style="display:inline-block;width:auto;padding:12px 30px">[ Découvrir mes œuvres ]</a>
+</div>
+</div>
+</section>
+
+<!-- CV -->
+<section class="cv-download-section">
+<div class="cv-container">
+<div class="cv-info">
+<div class="cv-icon-box">📄</div>
+<div class="cv-text">
+<h3>Mon Curriculum Vitae</h3>
+<p>Découvrez mon parcours et mes compétences au format PDF.</p>
+</div>
+</div>
+<a href="pdf/Cv-Josy-ratovo.pdf" download="CvJosyratovo.pdf" class="cv-download-btn"><span>Télécharger mon CV</span></a>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section fade-in-section">
+<h2 class="section-title">Me Contacter</h2>
+<p style="color:var(--text-muted)">Un projet en tête ? Laissez un message!</p>
+<form class="contact-form" id="contactForm">
+<div class="form-group"><label for="name">Votre Nom</label><input type="text" id="name" name="name" class="form-control" required placeholder="Ex: Jean Dupont"></div>
+<div class="form-group"><label for="email">Votre Adresse Email</label><input type="email" id="email" name="email" class="form-control" required placeholder="Ex: nom@domaine.com"></div>
+<div class="form-group"><label for="message">Votre Message</label><textarea id="message" name="message" class="form-control" required placeholder="Expliquez-moi votre projet en quelques lignes..."></textarea></div>
+<button type="submit" class="btn-submit" id="submitBtn">[ Envoyer le signal ]</button>
+<div class="form-status" id="formStatus"></div>
+</form>
+<div class="whatsapp-container">
+<a href="https://wa.me/261330128699" target="_blank" rel="noopener" class="btn-whatsapp">
+<svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+<span>Discuter sur WhatsApp</span>
+</a>
+</div>
+</section>
+</main>
+
+<script>
+// Protection Anti-Capture
+window.addEventListener('blur',()=>{document.body.style.filter='blur(12px)'});
+window.addEventListener('focus',()=>{document.body.style.filter='none'});
+document.addEventListener('keyup',e=>{if(e.key==='PrintScreen'&&navigator.clipboard)navigator.clipboard.writeText('')});
+document.addEventListener('keydown',e=>{
+if(e.key==='PrintScreen'||(e.metaKey&&e.shiftKey&&(e.key==='3'||e.key==='4'||e.key==='S'))){
+document.body.style.opacity='0';setTimeout(()=>{document.body.style.opacity='1'},1000);
+}
+});
+
+// Formulaire de Contact
+const contactForm=document.getElementById('contactForm'),formStatus=document.getElementById('formStatus'),submitBtn=document.getElementById('submitBtn');
+contactForm.addEventListener('submit',function(e){
+e.preventDefault();
+submitBtn.innerText="Transmission en cours...";submitBtn.disabled=true;
+fetch("https://formsubmit.co/ajax/josybratovo@gmail.com",{method:"POST",body:new FormData(this),headers:{'Accept':'application/json'}})
+.then(r=>r.json())
+.then(()=>{formStatus.style.color="#00e5ff";formStatus.innerText="✓ Signal envoyé avec succès ! Le message est dans ma boîte email.";formStatus.style.display="block";contactForm.reset()})
+.catch(err=>{console.error("Erreur d'envoi :",err);formStatus.style.color="#ff4a4a";formStatus.innerText="⚠️ Échec de la transmission. Veuillez réessayer.";formStatus.style.display="block"})
+.finally(()=>{submitBtn.innerText="[ Envoyer le signal ]";submitBtn.disabled=false});
+});
+
+// Menu Hamburger
+const hamburger=document.getElementById('hamburger'),navLinks=document.getElementById('nav-links');
+hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active');navLinks.classList.toggle('active')});
+document.querySelectorAll('.nav-links a').forEach(l=>l.addEventListener('click',()=>{hamburger.classList.remove('active');navLinks.classList.remove('active')}));
+
+// Accordéon Venty
+const ventyTrigger=document.getElementById('venty-trigger'),ventyContent=document.getElementById('venty-content');
+ventyTrigger.addEventListener('click',()=>{ventyTrigger.classList.toggle('active');ventyContent.classList.toggle('open')});
+
+// Carrousel 3D
+const cards3D=document.querySelectorAll('.slide-card-3d'),total3DCards=cards3D.length;let active3DIndex=0;
+function update3DCarousel(){
+const radius=window.innerWidth<480?200:300;
+cards3D.forEach((card,i)=>{
+let o=i-active3DIndex;
+if(o>total3DCards/2)o-=total3DCards;
+if(o<-total3DCards/2)o+=total3DCards;
+const a=o*35,rad=a*Math.PI/180;
+card.style.transform=`translate3d(${Math.sin(rad)*radius}px,0,${Math.cos(rad)*radius-radius}px) rotateY(${-a*.85}deg)`;
+if(o===0){card.style.opacity='1';card.style.filter='none';card.style.zIndex='10';card.style.borderColor='var(--blue-neon)'}
+else if(Math.abs(o)===1){card.style.opacity='.75';card.style.filter='brightness(.6)';card.style.zIndex='5';card.style.borderColor='rgba(0,180,216,.2)'}
+else{card.style.opacity='.3';card.style.filter='brightness(.3)';card.style.zIndex='1';card.style.borderColor='transparent'}
+});
+}
+cards3D.forEach((c,i)=>c.addEventListener('click',()=>{active3DIndex=i;update3DCarousel()}));
+update3DCarousel();
+setInterval(()=>{active3DIndex=(active3DIndex+1)%total3DCards;update3DCarousel()},3500);
+
+// Animations au scroll
+const sectionObserver=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+const isAbout=entry.target.id==='qui-suis-je';
+if(entry.isIntersecting){
+entry.target.classList.add('visible');
+if(isAbout)entry.target.querySelectorAll('.progress-bar-fill').forEach(b=>b.style.width=b.getAttribute('data-percent'));
+}else{
+entry.target.classList.remove('visible');
+if(isAbout)entry.target.querySelectorAll('.progress-bar-fill').forEach(b=>b.style.width='0%');
+}
+});
+},{threshold:.1,rootMargin:"0px 0px -50px 0px"});
+document.querySelectorAll('.fade-in-section').forEach(s=>sectionObserver.observe(s));
+</script>
+
+<!-- FIREBASE & LIKES -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script>
+firebase.initializeApp({
+apiKey:"AIzaSyCBv8OFQyvjvSwYvPKS6A-Nc936I2ag8y8",
+authDomain:"portfolio-josy.firebaseapp.com",
+projectId:"portfolio-josy",
+storageBucket:"portfolio-josy.firebasestorage.app",
+messagingSenderId:"49013469804",
+appId:"1:49013469804:web:5a72c64ddc9652cdf71e49",
+measurementId:"G-TQ2EWFFFQJ"
+});
+const db=firebase.firestore();
+
+async function handleLike(container,projectId){
+const icon=container.querySelector('i'),countSpan=container.querySelector('.heart-count'),btn=container.querySelector('button');
+const projectRef=db.collection('projects').doc(projectId);
+if(localStorage.getItem('liked_'+projectId)){alert("Vous avez déjà liké ce projet ! Merci !");return}
+try{
+await projectRef.set({likes:firebase.firestore.FieldValue.increment(1)},{merge:true});
+localStorage.setItem('liked_'+projectId,'true');
+container.classList.remove('unliked');
+if(icon){icon.classList.remove('far');icon.classList.add('fas')}
+if(btn){btn.style.transform='scale(1.4)';setTimeout(()=>btn.style.transform='',200)}
+if(countSpan)countSpan.innerText=(parseInt(countSpan.innerText)||0)+1;
+}catch(err){console.error("Erreur lors du like :",err)}
+}
+
+async function loadLikesOnStartup(){
+try{
+const snap=await db.collection('projects').get();
+snap.forEach(doc=>{
+const card=document.getElementById(doc.id);
+if(!card)return;
+const container=card.querySelector('.heart-reaction-container'),countSpan=card.querySelector('.heart-count'),icon=card.querySelector('.heart-reaction-container i');
+if(countSpan)countSpan.innerText=doc.data().likes||0;
+if(container&&localStorage.getItem('liked_'+doc.id)){
+container.classList.remove('unliked');
+if(icon){icon.classList.remove('far');icon.classList.add('fas')}
+}
+});
+}catch(err){console.error("Erreur lors du chargement des likes :",err)}
+}
+document.addEventListener('DOMContentLoaded',loadLikesOnStartup);
+</script>
+</body>
+</html>

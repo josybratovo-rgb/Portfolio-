@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Josy Ratovo — Portfolio Vidéos">
+  <meta property="og:description" content="Découvre mes vidéos, publicités, réels et travaux de color grading.">
+  <meta property="og:image" content="https://rajosyportfolio.netlify.app/image/AFFICHE GRAND.png">
+  <meta property="og:url" content="https://rajosyportfolio.netlify.app/">
+  <meta property="og:type" content="website">
+  <title>Mes Vidéos — Josy Ratovo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #070a0e; 
+      --card-bg: #16191d; 
+      --text-main: #fff;
+      --orange-accent: #e05e00; 
+      --blue-btn: #0a435c; 
+      --blue-hover: #0d5575; 
+      --nav-bg: #0b2e3b;
+    }
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Segoe UI', Arial, sans-serif; 
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    body { 
+      background: var(--bg-dark); 
+      color: var(--text-main); 
+      padding: 0 20px 80px; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      min-height: 100vh; 
+      overflow-x: hidden; 
+    }
+
+    /* NAVIGATION */
+    .header-nav { 
+      position: sticky; 
+      top: 0; 
+      width: 100%; 
+      background: var(--nav-bg); 
+      display: flex; 
+      justify-content: center; 
+      padding: 12px 20px; 
+      margin-bottom: 25px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,.5); 
+      z-index: 1000; 
+    }
+    .works-nav { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      width: 100%; 
+      max-width: 1100px; 
+    }
+    .nav-links-right { 
+      display: flex; 
+      align-items: center; 
+      gap: 20px; 
+    }
+    .works-nav a { 
+      color: #fff; 
+      text-decoration: none; 
+      font-weight: 600; 
+      font-size: 15px; 
+      padding: 8px 16px; 
+      border-radius: 6px; 
+      transition: all .3s; 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+    }
+    .works-nav a.active, .works-nav a:hover { 
+      color: #38bdf8; 
+      background: rgba(255,255,255,.08); 
+    }
+    .nav-home-btn { 
+      background: rgba(255,255,255,.05); 
+      border: 1px solid rgba(255,255,255,.1); 
+    }
+
+    /* FILTRES */
+    .filter-scroll-wrapper { 
+      width: 100%; 
+      max-width: 1100px; 
+      margin-bottom: 25px; 
+    }
+    .filter-scroll-container { 
+      display: flex; 
+      gap: 12px; 
+      overflow-x: auto; 
+      padding: 5px 0; 
+      scrollbar-width: none; 
+    }
+    .filter-scroll-container::-webkit-scrollbar { 
+      display: none; 
+    }
+    .filter-chip { 
+      background: var(--card-bg); 
+      color: #fff; 
+      border: 1px solid rgba(255,255,255,.1); 
+      padding: 9px 20px; 
+      font-size: 14px; 
+      font-weight: 600; 
+      border-radius: 20px; 
+      cursor: pointer; 
+      white-space: nowrap; 
+      transition: all .2s; 
+      flex-shrink: 0; 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+    }
+    .filter-chip.active, .filter-chip:hover { 
+      background: var(--orange-accent); 
+      border-color: var(--orange-accent); 
+      box-shadow: 0 4px 12px rgba(224,94,0,.3); 
+    }
+
+    /* GRILLE + CARTES */
+    .works-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: 25px; 
+      width: 100%; 
+      max-width: 1100px; 
+    }
+    .video-card { 
+      background: var(--card-bg); 
+      border-radius: 16px; 
+      padding: 16px; 
+      display: flex; 
+      flex-direction: column; 
+      box-shadow: 0 8px 24px rgba(0,0,0,.4); 
+      border: 1px solid rgba(255,255,255,.05); 
+      animation: pop .5s ease both; 
+      transition: transform .3s, border-color .3s; 
+    }
+    .video-card:hover { 
+      transform: translateY(-5px); 
+      border-color: rgba(224,94,0,.3); 
+    }
+    @keyframes pop { 
+      from { opacity: 0; transform: translateY(25px) scale(.95); } 
+      to { opacity: 1; transform: none; } 
+    }
+
+    .thumb { 
+      position: relative; 
+      width: 100%; 
+      height: 220px; 
+      border-radius: 12px; 
+      overflow: hidden; 
+      background: #000; 
+      cursor: pointer; 
+      margin-bottom: 14px; 
+    }
+    .thumb img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      transition: transform .5s; 
+      pointer-events: none;
+    }
+    .video-card:hover .thumb img { 
+      transform: scale(1.05); 
+    }
+
+    .play-icon { 
+      position: absolute; 
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%,-50%); 
+      width: 62px; 
+      height: 62px; 
+      border-radius: 50%; 
+      background: rgba(224,94,0,.9); 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      font-size: 22px; 
+      padding-left: 4px; 
+      box-shadow: 0 6px 20px rgba(0,0,0,.5); 
+      transition: transform .3s; 
+    }
+    .thumb:hover .play-icon { 
+      transform: translate(-50%,-50%) scale(1.12); 
+    }
+
+    .badge { 
+      position: absolute; 
+      top: 10px; 
+      left: 10px; 
+      background: rgba(7,10,14,.75); 
+      backdrop-filter: blur(4px); 
+      padding: 4px 10px; 
+      border-radius: 12px; 
+      font-size: 11px; 
+      font-weight: 600; 
+      border: 1px solid rgba(255,255,255,.15); 
+      z-index: 2;
+    }
+
+    .video-title { 
+      font-size: 15px; 
+      font-weight: 600; 
+      margin-bottom: 14px; 
+      padding: 0 4px; 
+    }
+    .card-divider { 
+      height: 1px; 
+      background: rgba(255,255,255,.1); 
+      margin-bottom: 14px; 
+      margin-top: auto; 
+    }
+    .card-actions { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 0 4px; 
+    }
+    .heart { 
+      position: relative; 
+      width: 45px; 
+      height: 45px; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      cursor: pointer; 
+    }
+    .heart button { 
+      background: none; 
+      border: none; 
+      color: var(--orange-accent); 
+      font-size: 42px; 
+      cursor: pointer; 
+      display: flex; 
+      transition: transform .2s; 
+    }
+    .heart:hover button { 
+      transform: scale(1.15); 
+    }
+    .heart-count { 
+      position: absolute; 
+      top: 43%; 
+      left: 50%; 
+      transform: translate(-50%,-50%); 
+      font-size: 11px; 
+      font-weight: bold; 
+      pointer-events: none; 
+    }
+    .heart.unliked .heart-count { 
+      color: var(--orange-accent); 
+    }
+    .details-btn { 
+      background: var(--blue-btn); 
+      color: #fff; 
+      border: none; 
+      padding: 10px 24px; 
+      font-size: 14px; 
+      font-weight: bold; 
+      border-radius: 6px; 
+      cursor: pointer; 
+      text-decoration: none;
+      transition: background .2s; 
+    }
+    .details-btn:hover { 
+      background: var(--blue-hover); 
+    }
+    .empty { 
+      grid-column: 1/-1; 
+      text-align: center; 
+      color: #a0aec0; 
+      padding: 40px 0; 
+    }
+
+    /* LECTEUR MODALE */
+    .player-modal { 
+      position: fixed; 
+      inset: 0; 
+      background: rgba(7,10,14,.95); 
+      z-index: 2000; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      opacity: 0; 
+      visibility: hidden; 
+      transition: opacity .3s, visibility .3s; 
+    }
+    .player-modal.show { 
+      opacity: 1; 
+      visibility: visible; 
+    }
+    .player-box { 
+      width: min(92vw, 960px); 
+      aspect-ratio: 16/9; 
+      background: #000; 
+      border-radius: 12px; 
+      overflow: hidden; 
+      box-shadow: 0 10px 40px rgba(0,0,0,.8); 
+    }
+    .player-box.vertical { 
+      width: auto; 
+      height: min(85vh, 760px); 
+      aspect-ratio: 9/16; 
+      max-width: 92vw; 
+    }
+    .player-box iframe { 
+      width: 100%; 
+      height: 100%; 
+      border: 0; 
+    }
+    .player-close { 
+      position: absolute; 
+      top: 20px; 
+      right: 28px; 
+      font-size: 35px; 
+      cursor: pointer; 
+      transition: color .2s; 
+      color: var(--text-main);
+    }
+    .player-close:hover { 
+      color: var(--orange-accent); 
+    }
+
+    /* BOUTON DE PARTAGE */
+    .share-widget { 
+      position: fixed; 
+      bottom: 30px; 
+      right: 30px; 
+      z-index: 1500; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: flex-end; 
+      gap: 12px; 
+      transition: opacity .3s; 
+    }
+    .player-modal.show ~ .share-widget { 
+      opacity: 0; 
+      visibility: hidden; 
+    }
+    .share-fab { 
+      width: 58px; 
+      height: 58px; 
+      border-radius: 50%; 
+      border: none; 
+      background: var(--orange-accent); 
+      color: #fff; 
+      font-size: 22px; 
+      cursor: pointer; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      box-shadow: 0 6px 20px rgba(224,94,0,.45); 
+      transition: transform .3s, background .3s; 
+    }
+    .share-fab:hover { 
+      transform: scale(1.08); 
+    }
+    .share-widget.open .share-fab { 
+      background: #b84a00; 
+    }
+    .share-menu { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: flex-end; 
+      gap: 10px; 
+    }
+    .share-item { 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      background: none; 
+      border: none; 
+      cursor: pointer; 
+      color: #fff; 
+      opacity: 0; 
+      transform: translateY(15px) scale(.9); 
+      pointer-events: none; 
+      transition: opacity .25s, transform .25s; 
+    }
+    .share-widget.open .share-item { 
+      opacity: 1; 
+      transform: none; 
+      pointer-events: auto; 
+    }
+    .share-label { 
+      background: var(--card-bg); 
+      border: 1px solid rgba(255,255,255,.1); 
+      padding: 6px 12px; 
+      border-radius: 8px; 
+      font-size: 13px; 
+      font-weight: 600; 
+      white-space: nowrap; 
+    }
+    .share-circle { 
+      width: 44px; 
+      height: 44px; 
+      border-radius: 50%; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      font-size: 18px; 
+      box-shadow: 0 4px 14px rgba(0,0,0,.5); 
+    }
+    .wa { background: #25d366; } 
+    .fb { background: #1877f2; } 
+    .copy { background: var(--blue-btn); } 
+    .native { background: #6b46c1; }
+    .share-toast { 
+      position: absolute; 
+      right: 70px; 
+      bottom: 14px; 
+      background: var(--card-bg); 
+      border: 1px solid var(--orange-accent); 
+      padding: 9px 14px; 
+      border-radius: 8px; 
+      font-size: 13px; 
+      font-weight: 600; 
+      white-space: nowrap; 
+      opacity: 0; 
+      pointer-events: none; 
+      transition: opacity .3s; 
+    }
+    .share-toast.show { 
+      opacity: 1; 
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      body { 
+        padding: 50px 15px 90px; 
+      }
+      .header-nav { 
+        position: fixed; 
+        top: auto; 
+        bottom: 0; 
+        left: 0; 
+        right: 0; 
+        margin: 0; 
+        padding: 8px 0; 
+        background: #05161d; 
+        border-top: 1px solid rgba(255,255,255,.08); 
+      }
+      .works-nav { 
+        justify-content: space-around; 
+      }
+      .nav-home-btn { 
+        position: fixed; 
+        top: 12px; 
+        left: 15px; 
+        z-index: 1001; 
+        background: var(--nav-bg); 
+        border-radius: 50%; 
+        width: 40px; 
+        height: 40px; 
+        padding: 0 !important; 
+        justify-content: center; 
+      }
+      .nav-home-btn span { 
+        display: none; 
+      }
+      .nav-links-right { 
+        width: 100%; 
+        justify-content: space-around; 
+        gap: 0; 
+      }
+      .works-nav a { 
+        flex-direction: column; 
+        gap: 4px; 
+        font-size: 11px; 
+        padding: 6px 10px; 
+      }
+      .works-nav a i { 
+        font-size: 18px; 
+      }
+      .filter-scroll-wrapper { 
+        margin-top: 10px; 
+      }
+      .share-widget { 
+        bottom: 85px; 
+        right: 18px; 
+      }
+      .share-fab { 
+        width: 52px; 
+        height: 52px; 
+        font-size: 20px; 
+      }
+      .share-toast { 
+        right: 64px; 
+        bottom: 11px; 
+      }
+    }
+  </style>
+</head>
+<body oncontextmenu="return false;">
+
+  <!-- HEADER NAVIGATION -->
+  <header class="header-nav">
+    <nav class="works-nav">
+      <a href="index.html" class="nav-home-btn" title="Retour à l'accueil"><i class="fas fa-home"></i><span>Accueil</span></a>
+      <div class="nav-links-right">
+        <a href="oeuvres.html"><i class="fas fa-image"></i>Image</a>
+        <a href="#" class="active"><i class="fas fa-video"></i>Vidéo</a>
+        <a href="blog.html"><i class="fas fa-blog"></i>Blog</a>
+        <a href="index.html#contact"><i class="fas fa-envelope"></i>Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- BARRE DE FILTRES -->
+  <div class="filter-scroll-wrapper">
+    <div class="filter-scroll-container" id="filters">
+      <button class="filter-chip active" data-filter="tous"><i class="fas fa-border-all"></i> Tous</button>
+      <button class="filter-chip" data-filter="publicite"><i class="fas fa-bullhorn"></i> Publicité</button>
+      <button class="filter-chip" data-filter="reel"><i class="fas fa-clapperboard"></i> Réel</button>
+      <button class="filter-chip" data-filter="color"><i class="fas fa-sliders-h"></i> Color grading</button>
+    </div>
+  </div>
+
+  <!-- GRILLE DES VIDÉOS -->
+  <main class="works-grid" id="grid"></main>
+
+  <!-- LECTEUR MODALE -->
+  <div class="player-modal" id="modal" onclick="closePlayer()">
+    <i class="fas fa-times player-close"></i>
+    <div class="player-box" id="playerBox" onclick="event.stopPropagation()"></div>
+  </div>
+
+  <!-- WIDGET DE PARTAGE -->
+  <div class="share-widget" id="shareWidget">
+    <div class="share-menu">
+      <button class="share-item" onclick="shareTo('whatsapp')"><span class="share-label">WhatsApp</span><span class="share-circle wa"><i class="fab fa-whatsapp"></i></span></button>
+      <button class="share-item" onclick="shareTo('facebook')"><span class="share-label">Facebook</span><span class="share-circle fb"><i class="fab fa-facebook-f"></i></span></button>
+      <button class="share-item" onclick="shareTo('copy')"><span class="share-label">Copier le lien</span><span class="share-circle copy"><i class="fas fa-link"></i></span></button>
+      <button class="share-item" id="nativeItem" onclick="shareTo('native')" style="display:none"><span class="share-label">Autres apps</span><span class="share-circle native"><i class="fas fa-ellipsis-h"></i></span></button>
+    </div>
+    <button class="share-fab" id="shareFab" onclick="toggleShare()" aria-label="Partager mon portfolio"><i class="fas fa-share-alt" id="shareIcon"></i></button>
+    <div class="share-toast" id="toast">Lien copié !</div>
+  </div>
+
+  <!-- FIREBASE ET SCRIPT LOGIQUE -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, doc, onSnapshot, setDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCBv8OFQyvjvSwYvPKS6A-Nc936I2ag8y8",
+      authDomain: "portfolio-josy.firebaseapp.com",
+      projectId: "portfolio-josy",
+      storageBucket: "portfolio-josy.firebasestorage.app",
+      messagingSenderId: "49013469804",
+      appId: "1:49013469804:web:5a72c64ddc9652cdf71e49",
+      measurementId: "G-3N3Z537MDP"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // UN SEUL DOCUMENT FIRESTORE : collection "portfolio" / document "stats"
+    const statsDocRef = doc(db, "portfolio", "stats");
+
+    const VIDEOS = [
+      { docId: 'video-pub', id: 'n9Jwxfyr-Fc', title: 'Motion design', cat: 'publicite', vertical: false },
+      { docId: 'video-color', id: 'eE11JZ8fjoc', title: 'Color grading', cat: 'color', vertical: false },
+      { docId: 'video-reel', id: '_HGenOT8UKQ', title: 'Transformer une interview brute en un format court captivant et prêt à performer sur Reels, TikTok et Shorts', cat: 'reel', vertical: true }
+    ];
+
+    const LABELS = { publicite: 'Publicité', reel: 'Réel', color: 'Color grading' };
+
+    let likesMap = {};
+    let currentFilter = 'tous';
+    const grid = document.getElementById('grid');
+
+    // ÉCOUTEUR TEMPS RÉEL SUR LE DOCUMENT UNIQUE
+    onSnapshot(statsDocRef, (snapshot) => {
+      if (snapshot.exists()) {
+        likesMap = snapshot.data();
+      }
+      render();
+    }, (error) => {
+      console.warn("Firestore non accessible, mode local.");
+      render();
+    });
+
+    function render() {
+      const list = VIDEOS.filter(v => currentFilter === 'tous' || v.cat === currentFilter);
+      grid.innerHTML = list.length ? '' : '<p class="empty">Aucune vidéo dans cette catégorie pour le moment.</p>';
+      
+      list.forEach((v, i) => {
+        const isLiked = localStorage.getItem('liked_video_' + v.docId) === 'true';
+        const likesCount = likesMap[v.docId] || 0;
+
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.style.animationDelay = (i * 0.07) + 's';
+        card.innerHTML = `
+          <div class="thumb" onclick="openPlayer('${v.id}', ${v.vertical})">
+            <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="${v.title}" loading="lazy">
+            <span class="badge">${LABELS[v.cat] || v.cat}</span>
+            <div class="play-icon"><i class="fas fa-play"></i></div>
+          </div>
+          <p class="video-title">${v.title}</p>
+          <div class="card-divider"></div>
+          <div class="card-actions">
+            <div class="heart ${isLiked ? '' : 'unliked'}" data-docid="${v.docId}">
+              <button><i class="${isLiked ? 'fas' : 'far'} fa-heart"></i></button>
+              <span class="heart-count">${likesCount}</span>
+            </div>
+            <button class="details-btn" onclick="openPlayer('${v.id}', ${v.vertical})">Regarder</button>
+          </div>`;
+        
+        card.querySelector('.heart').addEventListener('click', function() {
+          handleLike(this, v.docId);
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    document.getElementById('filters').addEventListener('click', e => {
+      const chip = e.target.closest('.filter-chip');
+      if (!chip) return;
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      currentFilter = chip.dataset.filter;
+      render();
+    });
+
+    async function handleLike(el, docId) {
+      const icon = el.querySelector('i');
+      const span = el.querySelector('.heart-count');
+      let n = parseInt(span.innerText) || 0;
+      const isCurrentlyUnliked = el.classList.contains('unliked');
+
+      const updatePayload = {};
+      if (isCurrentlyUnliked) {
+        el.classList.remove('unliked');
+        icon.className = 'fas fa-heart';
+        span.innerText = n + 1;
+        localStorage.setItem('liked_video_' + docId, 'true');
+        updatePayload[docId] = increment(1);
+      } else {
+        el.classList.add('unliked');
+        icon.className = 'far fa-heart';
+        span.innerText = Math.max(0, n - 1);
+        localStorage.removeItem('liked_video_' + docId);
+        updatePayload[docId] = increment(-1);
+      }
+
+      try {
+        await updateDoc(statsDocRef, updatePayload);
+      } catch (e) {
+        try {
+          await setDoc(statsDocRef, updatePayload, { merge: true });
+        } catch (err) { console.log("Sauvegarde locale active"); }
+      }
+    }
+
+    const modal = document.getElementById('modal');
+    const box = document.getElementById('playerBox');
+
+    window.openPlayer = function(id, vertical) {
+      box.className = 'player-box' + (vertical ? ' vertical' : '');
+      box.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"
+        allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+      modal.classList.add('show');
+      closeShare();
+    };
+
+    window.closePlayer = function() {
+      modal.classList.remove('show');
+      box.innerHTML = '';
+    };
+
+    const SHARE_URL = 'https://rajosyportfolio.netlify.app/';
+    const SHARE_TITLE = 'Josy Ratovo — Portfolio';
+    const SHARE_TEXT = 'Découvre mes réalisations vidéos :';
+    const widget = document.getElementById('shareWidget');
+    const icon = document.getElementById('shareIcon');
+    const toast = document.getElementById('toast');
+
+    if (navigator.share) document.getElementById('nativeItem').style.display = 'flex';
+
+    window.toggleShare = function() {
+      const open = widget.classList.toggle('open');
+      icon.className = open ? 'fas fa-times' : 'fas fa-share-alt';
+    };
+
+    window.closeShare = function() {
+      widget.classList.remove('open');
+      icon.className = 'fas fa-share-alt';
+    };
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    window.shareTo = async function(p) {
+      const url = SHARE_URL;
+      if (p === 'whatsapp') window.open('https://wa.me/?text=' + encodeURIComponent(SHARE_TEXT + ' ' + url), '_blank', 'noopener');
+      if (p === 'facebook') window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank', 'noopener');
+      if (p === 'copy') {
+        try { await navigator.clipboard.writeText(url); showToast('Lien copié !'); }
+        catch (e) { prompt('Copie ce lien :', url); }
+      }
+      if (p === 'native') { try { await navigator.share({ title: SHARE_TITLE, text: SHARE_TEXT, url }); } catch (e) {} }
+      closeShare();
+    };
+
+    document.addEventListener('keydown', (e) => {
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) ||
+        (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S'))
+      ) {
+        e.preventDefault();
+      }
+    });
+
+    document.addEventListener('click', e => { if (!widget.contains(e.target)) closeShare(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeShare(); closePlayer(); } });
+
+    render();
+  </script>
+</body>
+</html>
