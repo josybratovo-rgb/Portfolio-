@@ -13,29 +13,29 @@ gtag('config','G-TQ2EWFFFQJ');
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ===== SEO : remplacez l'URL si votre domaine est différent ===== -->
+<!-- ===== SEO ===== -->
 <title>Josy Ratovo | Créateur multimédia, design & montage vidéo</title>
 <meta name="description" content="Portfolio de Josy Ratovo, créateur multimédia : affiches, retouche photo, montage vidéo, motion design et UI/UX. Découvrez mes œuvres et contactez-moi.">
 <meta name="author" content="Josy Ratovo">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="theme-color" content="#0a0a0a">
-<link rel="canonical" href="https://rajosyportfolio.netlify.app/">
+<link rel="canonical" href="https://portfolio-josy-ratovo.vercel.app/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Josy Ratovo">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:title" content="Josy Ratovo | Créateur multimédia, design & montage vidéo">
 <meta property="og:description" content="Affiches, retouche photo, montage vidéo, motion design et UI/UX : le portfolio de Josy Ratovo.">
-<meta property="og:url" content="https://rajosyportfolio.netlify.app/">
-<meta property="og:image" content="https://rajosyportfolio.netlify.app/image/Picsart_26-07-13_17-01-25-362.png">
+<meta property="og:url" content="https://portfolio-josy-ratovo.vercel.app/">
+<meta property="og:image" content="https://portfolio-josy-ratovo.vercel.app/image/Picsart_26-07-13_17-01-25-362.png">
 <meta property="og:image:alt" content="Josy Ratovo, créateur multimédia">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Josy Ratovo | Créateur multimédia">
 <meta name="twitter:description" content="Affiches, retouche photo, montage vidéo, motion design et UI/UX.">
-<meta name="twitter:image" content="https://rajosyportfolio.netlify.app/image/Picsart_26-07-13_17-01-25-362.png">
+<meta name="twitter:image" content="https://portfolio-josy-ratovo.vercel.app/image/Picsart_26-07-13_17-01-25-362.png">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"WebSite","@id":"https://rajosyportfolio.netlify.app/#website","url":"https://rajosyportfolio.netlify.app/","name":"Josy Ratovo — Portfolio","inLanguage":"fr","publisher":{"@id":"https://rajosyportfolio.netlify.app/#person"}},
-{"@type":"Person","@id":"https://rajosyportfolio.netlify.app/#person","name":"Josy Ratovo","alternateName":["Ratovoarison Josia","Josia Ratovoarison"],"jobTitle":"Créateur multimédia","url":"https://rajosyportfolio.netlify.app/","image":"https://rajosyportfolio.netlify.app/image/Picsart_26-07-13_17-01-25-362.png","description":"Créateur multimédia : design graphique, retouche photo, montage vidéo, motion design et UI/UX.","knowsAbout":["Design graphique","Retouche photo","Montage vidéo","Motion design","UI/UX","Affiches"]}
+{"@type":"WebSite","@id":"https://portfolio-josy-ratovo.vercel.app/#website","url":"https://portfolio-josy-ratovo.vercel.app/","name":"Josy Ratovo — Portfolio","inLanguage":"fr","publisher":{"@id":"https://portfolio-josy-ratovo.vercel.app/#person"}},
+{"@type":"Person","@id":"https://portfolio-josy-ratovo.vercel.app/#person","name":"Josy Ratovo","alternateName":["Ratovoarison Josia","Josia Ratovoarison"],"jobTitle":"Créateur multimédia","url":"https://portfolio-josy-ratovo.vercel.app/","image":"https://portfolio-josy-ratovo.vercel.app/image/Picsart_26-07-13_17-01-25-362.png","description":"Créateur multimédia : design graphique, retouche photo, montage vidéo, motion design et UI/UX.","knowsAbout":["Design graphique","Retouche photo","Montage vidéo","Motion design","UI/UX","Affiches"]}
 ]}
 </script>
 <!-- ===== Fin SEO ===== -->
@@ -45,6 +45,7 @@ gtag('config','G-TQ2EWFFFQJ');
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background-color:var(--bg-dark);color:var(--text-main);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;padding-top:80px;overflow-x:hidden;transition:filter .3s ease,opacity .3s ease}
+body.modal-open{overflow:hidden}
 .fade-in-section{opacity:0;transform:translateY(30px);transition:opacity .8s ease-out,transform .8s ease-out}
 .fade-in-section.visible{opacity:1;transform:translateY(0)}
 .skeleton{background:linear-gradient(90deg,#121e2b 25%,#1c2d3d 50%,#121e2b 75%);background-size:200% 100%;animation:skeleton-loading 1.5s infinite}
@@ -58,27 +59,48 @@ header{position:fixed;top:0;left:0;width:100%;background:rgba(10,10,10,.9);backd
 .logo{font-weight:bold;font-size:1.3rem;color:var(--text-main);text-decoration:none;font-family:'Courier New',Courier,monospace;transition:transform .3s}
 .logo:hover{transform:scale(1.05)}
 .logo span{color:var(--blue-neon)}
-.nav-links{display:flex;list-style:none;gap:var(--space-lg)}
+.nav-links{display:flex;list-style:none;gap:var(--space-lg);margin-left:auto;margin-right:var(--space-lg)}
 .nav-links a{color:var(--text-muted);text-decoration:none;font-size:1rem;font-weight:500;position:relative;transition:color .3s}
 .nav-links a::after{content:'';position:absolute;width:0;height:2px;bottom:-4px;left:0;background:var(--blue-glow);transition:width .3s}
 .nav-links a:hover::after{width:100%}
 .nav-links a:hover{color:var(--blue-glow)}
+.nav-actions{display:flex;align-items:center;gap:var(--space-md)}
 .hamburger{display:none;cursor:pointer;background:none;border:none;z-index:1100}
 .hamburger .bar{display:block;width:25px;height:3px;margin:5px auto;background:var(--text-main);transition:all .3s ease-in-out}
+
+/* Bouton "i" (transparence IA) */
+.info-btn{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--blue-neon);background:transparent;color:var(--blue-neon);font-family:Georgia,'Times New Roman',Times,serif;font-size:1.15rem;font-weight:700;font-style:italic;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background-color .3s,color .3s,transform .2s;flex-shrink:0}
+.info-btn:hover{background:var(--blue-neon);color:var(--bg-dark);transform:translateY(-1px)}
+.info-btn:focus-visible,.modal-close:focus-visible{outline:2px solid var(--blue-glow);outline-offset:3px}
+
+/* Fenêtre d'information */
+.modal-overlay{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:var(--space-lg);background:rgba(0,0,0,.72);backdrop-filter:blur(6px)}
+.modal-overlay.open{display:flex;animation:modalFade .25s ease-out}
+@keyframes modalFade{from{opacity:0}to{opacity:1}}
+.modal{position:relative;width:100%;max-width:500px;max-height:85vh;overflow-y:auto;background:var(--bg-card);border:1px solid rgba(0,180,216,.35);border-radius:16px;padding:var(--space-xl);box-shadow:0 20px 50px rgba(0,0,0,.6)}
+.modal-head{display:flex;align-items:center;gap:var(--space-md);margin-bottom:var(--space-lg);padding-right:40px}
+.modal-head .info-btn{pointer-events:none}
+.modal h2{font-size:1.2rem;color:var(--text-main)}
+.modal p{font-size:.95rem;color:#e0e0e0;line-height:1.7;margin-bottom:var(--space-md)}
+.modal p:last-child{margin-bottom:0}
+.modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border:none;border-radius:50%;background:rgba(255,255,255,.06);color:var(--text-main);font-size:1.4rem;line-height:1;cursor:pointer;transition:background-color .3s}
+.modal-close:hover{background:rgba(255,255,255,.14)}
+
 .container{max-width:1100px;margin:0 auto;padding:20px var(--space-lg)}
-.hero-bento{display:grid;grid-template-columns:5fr 4fr 3fr;grid-template-areas:"title photo photo" "wide wide product";grid-auto-rows:minmax(240px,auto);gap:var(--space-md);padding:24px 0 40px;animation:fadeInRight 1s ease-out}
+
+/* ===== HERO BENTO (ordinateur) ===== */
+.hero-bento{display:grid;grid-template-columns:5fr 4fr 3fr;grid-template-areas:"title photo photo" "wide wide product";grid-template-rows:minmax(340px,auto) 290px;gap:var(--space-md);padding:24px 0 40px;animation:fadeInRight 1s ease-out}
 .bento-card{border-radius:24px;overflow:hidden;position:relative;border:1px solid rgba(0,180,216,.2);transition:transform .3s,border-color .3s}
 .bento-card:hover{transform:translateY(-4px);border-color:var(--blue-neon)}
 .bento-card img{width:100%;height:100%;object-fit:cover;display:block}
-.bento-title{grid-area:title;background:linear-gradient(135deg,#12202c,#0c141c);padding:var(--space-xl);display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-md)}
+/* les images ne décident plus de la hauteur des cartes */
+.bento-photo img,.bento-wide img,.bento-product img{position:absolute;inset:0}
+.bento-title{grid-area:title;background:linear-gradient(135deg,#12202c,#0c141c);padding:var(--space-xl);display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-lg)}
 .bento-title h1{font-size:3.2rem;letter-spacing:-1px;line-height:1.05;animation:slideInLeft 1s ease-out}
-.bento-title .subtitle{font-size:1.2rem;color:var(--blue-neon);font-weight:500}
-.bento-mini{display:flex;gap:var(--space-md);align-items:stretch}
-.bento-thumb{width:96px;min-height:110px;flex-shrink:0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
-.bento-mini-text{display:flex;flex-direction:column;justify-content:center}
-.punchline{color:var(--text-muted);font-size:.95rem}
-.cta-container{display:flex;gap:var(--space-sm);width:100%}
-.btn{flex:1;padding:10px 16px;font-size:.85rem;font-weight:bold;text-align:center;text-decoration:none;border-radius:50px;cursor:pointer;transition:all .3s cubic-bezier(.25,.8,.25,1)}
+.bento-title .subtitle{font-size:1.2rem;color:var(--blue-neon);font-weight:500;margin-top:var(--space-xs)}
+.punchline{margin-top:var(--space-md);color:var(--text-muted);font-size:1rem;max-width:32ch}
+.cta-container{display:flex;flex-wrap:wrap;gap:var(--space-sm) var(--space-md)}
+.btn{flex:0 1 auto;padding:12px 26px;font-size:.9rem;font-weight:bold;text-align:center;text-decoration:none;border-radius:50px;cursor:pointer;transition:all .3s cubic-bezier(.25,.8,.25,1)}
 .btn-primary{background:var(--orange-neon);color:var(--bg-dark);border:2px solid var(--orange-neon);box-shadow:0 4px 15px rgba(255,107,0,.3)}
 .btn-primary:hover{background:var(--orange-glow);border-color:var(--orange-glow);box-shadow:0 0 25px var(--orange-glow);transform:translateY(-2px)}
 .btn-secondary{background:transparent;color:var(--orange-glow);border:2px solid var(--orange-neon)}
@@ -86,9 +108,9 @@ header{position:fixed;top:0;left:0;width:100%;background:rgba(10,10,10,.9);backd
 .bento-photo{grid-area:photo;border-radius:24px 24px 24px 80px}
 .bento-wide{grid-area:wide;border-radius:24px 80px 24px 24px}
 .bento-product{grid-area:product;background:var(--bg-card)}
-.bento-label{position:absolute;left:12px;bottom:12px;z-index:5;background:rgba(10,10,10,.75);backdrop-filter:blur(6px);color:var(--orange-glow);font-size:.75rem;font-weight:bold;text-transform:uppercase;letter-spacing:1px;padding:6px 12px;border-radius:50px}
 @keyframes slideInLeft{from{opacity:0;transform:translateX(-50px)}to{opacity:1;transform:translateX(0)}}
 @keyframes fadeInRight{from{opacity:0;transform:translateX(50px)}to{opacity:1;transform:translateX(0)}}
+
 .projects-section{padding:var(--space-xxl) 0;border-top:1px solid rgba(255,255,255,.05)}
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:var(--space-xl);margin-top:var(--space-xl);align-items:start}
 .project-card{background:var(--bg-card);border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.03);transition:transform .3s cubic-bezier(.25,.8,.25,1),border-color .3s;display:flex;flex-direction:column}
@@ -140,7 +162,7 @@ header{position:fixed;top:0;left:0;width:100%;background:rgba(10,10,10,.9);backd
 .certif-card:hover{border-color:var(--blue-neon);transform:translateY(-3px)}
 .certif-badge{display:inline-block;font-size:.75rem;color:var(--blue-neon);font-weight:bold;text-transform:uppercase;letter-spacing:1px;margin-bottom:var(--space-sm)}
 .certif-content{display:flex;gap:var(--space-xl);align-items:center;justify-content:space-between;margin-bottom:var(--space-lg)}
-/* NOUVEAU : le certificat UXY est aligné sous celui d'Orange (même mise en page, taille inchangée) */
+/* le certificat UXY est aligné sous celui d'Orange (même mise en page, taille inchangée) */
 .certif-content1{display:flex;gap:var(--space-xl);align-items:center;justify-content:space-between}
 
 .certif-text h4{color:#fff;font-size:1.3rem;margin-bottom:var(--space-sm)}
@@ -176,17 +198,16 @@ textarea.form-control{resize:vertical;min-height:120px}
 .cv-text p{font-size:14px;color:#a0aec0}
 .cv-download-btn{background:var(--orange-neon);color:#fff;text-decoration:none;font-weight:600;font-size:14px;padding:12px var(--space-lg);border-radius:8px;display:flex;align-items:center;gap:10px;white-space:nowrap;box-shadow:0 4px 15px rgba(224,94,0,.3);transition:all .3s}
 .cv-download-btn:hover{background:var(--orange-glow);transform:translateY(-2px);box-shadow:0 6px 20px rgba(224,94,0,.5)}
+
 @media (max-width:768px){
 .hamburger{display:block}
-.nav-links{position:fixed;right:-100%;top:70px;flex-direction:column;background:rgba(10,10,10,.95);width:100%;height:calc(100vh - 70px);text-align:center;gap:40px;padding-top:50px;transition:.3s;backdrop-filter:blur(15px);border-top:1px solid rgba(255,255,255,.05)}
+.nav-links{position:fixed;right:-100%;top:70px;flex-direction:column;background:rgba(10,10,10,.95);width:100%;height:calc(100vh - 70px);text-align:center;gap:40px;padding-top:50px;margin:0;transition:.3s;backdrop-filter:blur(15px);border-top:1px solid rgba(255,255,255,.05)}
 .nav-links.active{right:0}
 .hero-bento{display:flex;flex-direction:column;gap:var(--space-lg);padding:20px 0}
-.bento-title{background:transparent;padding:0;border:none;text-align:center}
+.bento-title{background:transparent;padding:0;border:none;text-align:center;gap:var(--space-md)}
 .bento-title h1{font-size:2.5rem;margin-bottom:var(--space-xs)}
-.bento-title .subtitle{font-size:1.2rem;margin-bottom:var(--space-md)}
-.bento-mini{display:flex; justify-content:center}
-.bento-thumb{display:none}
-.punchline{text-align:center}
+.bento-title .subtitle{font-size:1.2rem;margin-bottom:var(--space-sm)}
+.punchline{text-align:center;max-width:none;margin-top:var(--space-sm)}
 .bento-photo{height:380px;border-radius:20px;border:1px solid rgba(0,180,216,.2)}
 .bento-wide,.bento-product{display:none!important}
 .cta-container{margin-top:var(--space-md);justify-content:center}
@@ -199,6 +220,7 @@ textarea.form-control{resize:vertical;min-height:120px}
 .cv-container{flex-direction:column;text-align:center;padding:var(--space-md);gap:var(--space-md)}
 .cv-info{flex-direction:column;gap:var(--space-sm)}
 .cv-download-btn{width:100%;justify-content:center}
+.modal{padding:var(--space-lg)}
 }
 @media (max-width:480px){.slide-card-3d{width:150px;height:230px;margin-left:-75px;margin-top:-115px}}
 .hamburger.active .bar:nth-child(2){opacity:0}
@@ -211,15 +233,32 @@ textarea.form-control{resize:vertical;min-height:120px}
 <header>
 <nav class="navbar" aria-label="Navigation principale">
 <a href="#" class="logo">Josy<span>Ratovo</span></a>
-<button class="hamburger" id="hamburger" aria-label="Ouvrir le menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
 <ul class="nav-links" id="nav-links">
 <li><a href="#projets-preview">Mes Projets</a></li>
 <li><a href="#qui-suis-je">Qui suis-je</a></li>
 <li><a href="oeuvres.html">Mes Œuvres</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
+<div class="nav-actions">
+<button type="button" class="info-btn" id="info-btn" aria-label="Informations sur la création de ce portfolio" aria-haspopup="dialog" aria-controls="info-modal">i</button>
+<button class="hamburger" id="hamburger" aria-label="Ouvrir le menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button>
+</div>
 </nav>
 </header>
+
+<!-- FENÊTRE D'INFORMATION (transparence IA) -->
+<div class="modal-overlay" id="info-modal" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
+<div class="modal">
+<button type="button" class="modal-close" id="info-close" aria-label="Fermer">&times;</button>
+<div class="modal-head">
+<span class="info-btn" aria-hidden="true">i</span>
+<h2 id="info-modal-title">À propos de ce portfolio</h2>
+</div>
+<p>J'ai créé ce portfolio avec l'aide de l'IA. Mes idées, mes créations et mes choix restent les miens. Claude m'a aidé à rédiger mes textes en français, à écrire et corriger le code du site, et à trouver des informations dont j'avais besoin.</p>
+<p>J'ai relu chaque texte avant de le publier, testé le code, et vérifié que le résultat correspondait à ce que je voulais dire. Je sais que l'IA peut se tromper, c'est pourquoi la décision finale m'appartient toujours.</p>
+<p>J'assume l'entière responsabilité du contenu, de son exactitude et de sa présentation. Je le précise par souci de transparence envers mes visiteurs et mes futurs clients.</p>
+</div>
+</div>
 
 <main class="container">
 
@@ -229,11 +268,7 @@ textarea.form-control{resize:vertical;min-height:120px}
 <div>
 <h1>Josy Ratovo</h1>
 <div class="subtitle">Créateur Multimédia</div>
-</div>
-
-<div class="protection-overlay"></div>
-</div>
-<div class="bento-mini-text"><p class="punchline">"Donner vie aux idées à travers le visuel."</p></div>
+<p class="punchline">"Donner vie aux idées à travers le visuel."</p>
 </div>
 <div class="cta-container">
 <a href="oeuvres.html" class="btn btn-primary">Voir mes œuvres</a>
@@ -247,18 +282,16 @@ textarea.form-control{resize:vertical;min-height:120px}
 <div class="protection-overlay"></div>
 </div>
 
-<!-- NOUVEAU : couverture "PORTFOLIO" dans la grande carte du bas -->
+<!-- Couverture "PORTFOLIO" (interface de création) -->
 <div class="bento-card bento-wide img-wrapper skeleton">
-<img src="image/couverture-portfolio-1.png" alt="Couverture du portfolio de Josy Ratovo, interface de création" style="object-position:center 45%" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');">
+<img src="image/couverture-portfolio-1.png" alt="Couverture du portfolio de Josy Ratovo, interface de création" style="object-position:center 42%" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');">
 <div class="protection-overlay"></div>
-
 </div>
 
-<!-- NOUVEAU : image du blog dans la petite carte -->
+<!-- Image du blog / interface vidéo -->
 <div class="bento-card bento-product img-wrapper skeleton">
-<img src="image/blog.jpg" alt="Blog de Josy Ratovo" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');">
+<img src="image/blog.jpg" alt="Interface de montage vidéo, blog de Josy Ratovo" style="object-position:center" loading="lazy" decoding="async" onload="this.classList.add('loaded');this.parentElement.classList.remove('skeleton');">
 <div class="protection-overlay"></div>
-
 </div>
 </section>
 
@@ -427,6 +460,15 @@ if(e.key==='PrintScreen'||(e.metaKey&&e.shiftKey&&(e.key==='3'||e.key==='4'||e.k
 document.body.style.opacity='0';setTimeout(()=>{document.body.style.opacity='1'},1000);
 }
 });
+
+// Fenêtre d'information (icône "i")
+const infoBtn=document.getElementById('info-btn'),infoModal=document.getElementById('info-modal'),infoClose=document.getElementById('info-close');
+function openInfo(){infoModal.classList.add('open');document.body.classList.add('modal-open');infoClose.focus()}
+function closeInfo(){infoModal.classList.remove('open');document.body.classList.remove('modal-open');infoBtn.focus()}
+infoBtn.addEventListener('click',openInfo);
+infoClose.addEventListener('click',closeInfo);
+infoModal.addEventListener('click',e=>{if(e.target===infoModal)closeInfo()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&infoModal.classList.contains('open'))closeInfo()});
 
 // Formulaire de Contact
 const contactForm=document.getElementById('contactForm'),formStatus=document.getElementById('formStatus'),submitBtn=document.getElementById('submitBtn');
