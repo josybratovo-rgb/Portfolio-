@@ -17,6 +17,7 @@ h2{font-size:18px;margin-bottom:16px;color:var(--blue)}
 .btn{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;border:none;border-radius:8px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer;transition:transform .2s}
 .btn:hover{transform:translateY(-2px)}
 .btn.sec{background:transparent;border:1px solid rgba(255,255,255,.2)}
+.btn.blue-btn{background:var(--blue);color:#070a0e}
 .btn.sm{padding:7px 12px;font-size:12px}
 .btn.red{background:#9b1c1c}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
@@ -35,14 +36,15 @@ textarea{min-height:260px;resize:vertical;line-height:1.6}
 .on{background:#14532d}.off{background:#713f12}
 .btns{display:flex;gap:6px;flex-wrap:wrap}
 #preview{display:none;margin-top:18px;padding:18px;background:#0b0f14;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
-#preview h2{color:#fff;border-left:4px solid var(--orange);padding-left:12px;margin:24px 0 12px}
+#preview h2{color:var(--blue);border-left:4px solid var(--blue);padding-left:12px;margin:24px 0 12px}
 #preview p{color:#cbd5e0;line-height:1.7;margin-bottom:14px}
+#preview img{max-width:100%;border-radius:10px;margin:16px 0;border:1px solid rgba(255,255,255,.1)}
 #preview li{list-style:none;background:var(--card);border-left:3px solid var(--orange);padding:10px 12px;margin-bottom:8px;border-radius:6px;color:#cbd5e0}
 #coverBox{display:none;align-items:center;gap:14px;margin-top:12px}
 #coverImg{width:160px;height:100px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.15)}
 input[type=file]{padding:9px}
 #msg{color:#fca5a5;margin-top:14px;font-size:14px}
-#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--orange);padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .3s}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--orange);padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9999}
 #toast.show{opacity:1}
 @media (max-width:600px){.row{grid-template-columns:1fr}}
 </style>
@@ -83,9 +85,15 @@ input[type=file]{padding:9px}
 <input id="coverFile" type="file" accept="image/*">
 <input id="cover" type="hidden">
 <div id="coverBox"><img id="coverImg" alt="Aperçu de la couverture"><button type="button" class="btn red sm" id="btnCoverClear"><i class="fas fa-times"></i> Retirer</button></div>
-<label for="content">Contenu</label>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+<label for="content" style="margin:0">Contenu de l'article</label>
+<button type="button" class="btn blue-btn sm" id="btnInsertInlineImg"><i class="fas fa-image"></i> + Insérer une photo au milieu</button>
+<input type="file" id="inlineImgFile" accept="image/*" style="display:none">
+</div>
+
 <textarea id="content" placeholder="Votre texte…"></textarea>
-<p class="muted" style="margin-top:8px">Mise en forme : une ligne vide sépare les paragraphes · <b>## Titre</b> pour un intertitre · <b>- </b> au début d'une ligne pour une liste · <b>**gras**</b> pour le gras.</p>
+<p class="muted" style="margin-top:8px">Mise en forme : une ligne vide sépare les paragraphes · <b style="color:var(--blue)">## Titre</b> pour un sous-titre en bleu · <b>- </b> pour une liste · <b>**gras**</b> pour le gras.</p>
 <div class="check"><input type="checkbox" id="pub" checked><label for="pub" style="margin:0;color:#fff">Publié (visible sur le blog)</label></div>
 <div class="actions">
 <button class="btn" id="btnSave"><i class="fas fa-save"></i> Enregistrer</button>
@@ -113,8 +121,8 @@ appId:"1:49013469804:web:5a72c64ddc9652cdf71e49",
 measurementId:"G-3N3Z537MDP"
 });
 const db = getFirestore(app), auth = getAuth(app);
-const ADMIN_EMAIL = 'josybratovo@gmail.com'; // doit être le même que dans les règles Firestore
-const BASE = location.origin + '/';
+const ADMIN_EMAIL = 'josybratovo@gmail.com';
+const BASE = 'https://portfolio-josy-ratovo.vercel.app/';
 const $ = id => document.getElementById(id);
 const CATS = {design:'Design',montage:'Montage',ia:'IA',autre:'Autre'};
 
@@ -124,10 +132,14 @@ function md(t){
 const out=[]; let list=false;
 String(t||'').split('\n').forEach(l=>{
 l=l.trim();
+if(l.startsWith('![') && l.includes('](')){
+const match = l.match(/^!\[(.*?)\]\((.*?)\)$/);
+if(match){ if(list){out.push('</ul>');list=false} out.push('<div style="text-align:center;margin:20px 0;"><img src="'+match[2]+'" alt="'+esc(match[1])+'" style="max-width:100%;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.5);"></div>'); return; }
+}
 if(l.startsWith('- ')){ if(!list){out.push('<ul>');list=true} out.push('<li>'+inl(l.slice(2))+'</li>'); return; }
 if(list){out.push('</ul>');list=false}
 if(!l) return;
-out.push(l.startsWith('## ') ? '<h2>'+inl(l.slice(3))+'</h2>' : '<p>'+inl(l)+'</p>');
+out.push(l.startsWith('## ') ? '<h2 style="color:var(--blue);border-left:4px solid var(--blue);padding-left:12px;margin:24px 0 12px;">'+inl(l.slice(3))+'</h2>' : '<p>'+inl(l)+'</p>');
 });
 if(list) out.push('</ul>');
 return out.join('');
@@ -138,8 +150,7 @@ function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show');
 
 let items = [], editing = null;
 
-$('btnLogin').onclick = async () => {
-$('msg').textContent = '';
+$('btnLogin').onclick = async () => {$('msg').textContent = '';
 try{ await signInWithPopup(auth, new GoogleAuthProvider()); }
 catch(e){ $('msg').textContent = 'Connexion impossible : ' + (e.code || e.message); }
 };
@@ -194,15 +205,14 @@ catch(_){ toast('Suppression impossible'); }
 
 function fill(a){
 editing = a.slug;
-$('formTitle').textContent = 'Modifier l\'article';
-$('title').value = a.title||''; $('cat').value = a.cat||'autre'; $('date').value = a.date||today();
-$('excerpt').value = a.excerpt||''; setCover(a.cover); $('content').value = a.content||'';
+$('formTitle').textContent = 'Modifier l\'article';$('title').value = a.title||''; $('cat').value = a.cat\vert{}\vert{}'autre';$('date').value = a.date||today();
+$('excerpt').value = a.excerpt\vert{}\vert{}''; setCover(a.cover);$('content').value = a.content||'';
 $('pub').checked = !!a.published; $('preview').style.display = 'none';
 }
 function resetForm(){
 editing = null; $('formTitle').textContent = 'Nouvel article';
 ['title','excerpt','content'].forEach(i=>$(i).value=''); setCover('');
-$('cat').value='design'; $('date').value=today(); $('pub').checked=true; $('preview').style.display='none';
+$('cat').value='design';$('date').value=today(); $('pub').checked=true; $('preview').style.display='none';
 }
 $('btnNew').onclick = resetForm;
 $('btnPrev').onclick = () => {
@@ -212,7 +222,7 @@ p.style.display = p.style.display==='block' ? 'none' : 'block';
 };
 
 $('btnSave').onclick = async () => {
-const title = $('title').value.trim(), content = $('content').value.trim();
+const title = $('title').value.trim(), content =$('content').value.trim();
 if(!title || !content){ toast('Titre et contenu obligatoires'); return; }
 let slug = editing;
 if(!slug){
@@ -223,14 +233,14 @@ while(items.some(x=>x.slug===slug)) slug = base + '-' + n++;
 try{
 await setDoc(doc(db,'articles',slug), {
 title, cat:$('cat').value, excerpt:$('excerpt').value.trim(), cover:$('cover').value.trim(),
-content:$('content').value, date:$('date').value || today(), published:$('pub').checked,
+content:$('content').value, date:$('date').value \vert{}\vert{} today(), published:$('pub').checked,
 updated:new Date().toISOString()
 });
 toast('Article enregistré'); editing = slug; await loadList();
 }catch(e){ toast('Échec : vérifiez les règles Firestore'); console.error(e); }
 };
 
-// ---------- IMAGE DE COUVERTURE (importée, compressée, stockée dans l'article) ----------
+// ---------- IMAGES (COMPRESSION & INSERTION) ----------
 function setCover(v){
 $('cover').value = v || '';
 const i = $('coverImg');
@@ -259,23 +269,37 @@ img.onerror = rej; img.src = u;
 }
 $('coverFile').addEventListener('change', async e => {
 const f = e.target.files[0]; if(!f) return;
-try{ setCover(await shrink(f)); toast('Image ajoutée'); }
+try{ setCover(await shrink(f)); toast('Image de couverture ajoutée'); }
 catch(_){ toast('Image illisible'); }
 e.target.value = '';
 });
 $('btnCoverClear').onclick = () => setCover('');
 
-// ---------- EXPORT : page HTML statique + image ----------
+// Insertion d'image au milieu du contenu
+$('btnInsertInlineImg').onclick = () => $('inlineImgFile').click();$('inlineImgFile').addEventListener('change', async e => {
+const f = e.target.files[0]; if(!f) return;
+try{
+const base64Img = await shrink(f);
+const txtArea = $('content');
+const imgTag = '\n\n![Image](' + base64Img + ')\n\n';
+const start = txtArea.selectionStart, end = txtArea.selectionEnd;
+txtArea.value = txtArea.value.substring(0, start) + imgTag + txtArea.value.substring(end);
+toast('Photo insérée dans l\'article');
+}catch(_){ toast('Échec de l\'insertion'); }
+e.target.value = '';
+});
+
+// ---------- EXPORT ----------
 const COLORS = {design:'#ff6b00',montage:'#00b4d8',ia:'#8b5cf6',autre:'#94a3b8'};
 const fmtD = d => d ? new Date(d+'T00:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}) : '';
-const EXPORT_CSS = ':root{--card:#16191d;--muted:#a0aec0;--orange:#e05e00;--nav:#0b2e3b}*{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Arial,sans-serif}body{background:#070a0e;color:#fff;padding:0 20px 80px;display:flex;flex-direction:column;align-items:center;min-height:100vh}'
+const EXPORT_CSS = ':root{--card:#16191d;--muted:#a0aec0;--orange:#e05e00;--blue:#00b4d8;--nav:#0b2e3b}*{box-sizing:border-box;margin:0;padding:0;font-family:"Segoe UI",Arial,sans-serif}body{background:#070a0e;color:#fff;padding:0 20px 80px;display:flex;flex-direction:column;align-items:center;min-height:100vh}'
 +'.nav{position:sticky;top:0;width:100%;background:var(--nav);display:flex;justify-content:center;padding:12px 20px;margin-bottom:30px;box-shadow:0 4px 15px rgba(0,0,0,.5);z-index:1000}.nav div{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:1100px}.nav .r{display:flex;gap:20px;width:auto}'
 +'.nav a{color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:8px 16px;border-radius:6px;display:flex;align-items:center;gap:8px}.nav a.on,.nav a:hover{color:#38bdf8;background:rgba(255,255,255,.08)}'
 +'.article{width:100%;max-width:780px}.back{display:inline-flex;gap:8px;color:#38bdf8;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:20px}'
 +'.cover{width:100%;height:340px;border-radius:16px;overflow:hidden;background:var(--card);margin-bottom:28px}.cover img{width:100%;height:100%;object-fit:cover}'
 +'.tag{display:inline-block;background:var(--c);color:#070a0e;font-size:12px;font-weight:800;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px}'
 +'h1{font-size:34px;line-height:1.25;margin-bottom:14px}.meta{display:flex;flex-wrap:wrap;gap:18px;color:var(--muted);font-size:14px;padding-bottom:22px;margin-bottom:30px;border-bottom:1px solid rgba(255,255,255,.1)}.meta i{color:var(--orange);margin-right:6px}'
-+'.content h2{font-size:22px;margin:48px 0 18px;padding-left:14px;border-left:4px solid var(--orange)}.content p{line-height:1.8;color:#cbd5e0;margin-bottom:20px;font-size:16px}.content ul{list-style:none;margin:8px 0}'
++'.content h2{font-size:22px;margin:48px 0 18px;padding-left:14px;border-left:4px solid var(--blue);color:var(--blue)}.content p{line-height:1.8;color:#cbd5e0;margin-bottom:20px;font-size:16px}.content ul{list-style:none;margin:8px 0}'
 +'.content li{background:var(--card);border:1px solid rgba(255,255,255,.06);border-left:3px solid var(--orange);border-radius:8px;padding:14px 16px;margin-bottom:12px;line-height:1.7;color:#cbd5e0;font-size:15.5px}.content strong{color:#fff}'
 +'.cta{display:flex;justify-content:center;margin-top:56px}.cta a{background:var(--orange);color:#fff;text-decoration:none;font-weight:700;padding:13px 30px;border-radius:8px;box-shadow:0 6px 18px rgba(224,94,0,.35)}'
 +'@media(max-width:600px){body{padding:55px 15px 90px}.nav{position:fixed;top:auto;bottom:0;left:0;right:0;margin:0;padding:8px 0;background:#05161d}.nav .h span{display:none}.nav .r{width:100%;justify-content:space-around;gap:0}.nav a{flex-direction:column;gap:4px;font-size:11px;padding:6px 10px}.nav a i{font-size:18px}.cover{height:210px}h1{font-size:26px}}';
