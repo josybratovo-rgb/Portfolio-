@@ -95,7 +95,7 @@ input[type=file]{padding:9px}
 </div>
 
 <textarea id="content" placeholder="Votre texte…"></textarea>
-<p class="muted" style="margin-top:8px">Mise en forme : une ligne vide sépare les paragraphes · <b style="color:var(--blue)">## Titre</b> pour un sous-titre en bleu · <b>- </b> pour une liste · <b>**gras**</b> pour le gras.</p>
+<p class="muted" style="margin-top:8px">Mise en forme : une ligne vide sépare les paragraphes, 2 ou 3 lignes vides ajoutent de l'espace · <b style="color:var(--blue)">## Titre</b> pour un sous-titre en bleu · <b>- </b> pour une liste · <b>**gras**</b> pour le gras.</p>
 <div class="check"><input type="checkbox" id="pub" checked><label for="pub" style="margin:0;color:#fff">Publié (visible sur le blog)</label></div>
 <div class="actions">
 <button class="btn" id="btnSave"><i class="fas fa-save"></i> Enregistrer</button>
@@ -131,17 +131,23 @@ const CATS = {design:'Design',montage:'Montage',ia:'IA',autre:'Autre'};
 const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const inl = s => esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
 function md(t){
-const out=[]; let list=false;
+const out=[]; let list=false, blanks=0;
 String(t||'').split('\n').forEach(l=>{
 l=l.trim();
+if(!l){ blanks++; return; }
+if(blanks>1){
+if(list){out.push('</ul>');list=false}
+out.push('<div style="height:'+((blanks-1)*28)+'px"></div>');
+}
+blanks=0;
 if(l.startsWith('![') && l.includes('](')){
 const match = l.match(/^!\[(.*?)\]\((.*?)\)$/);
 if(match){ if(list){out.push('</ul>');list=false} out.push('<div style="text-align:center;margin:20px 0;"><img src="'+match[2]+'" alt="'+esc(match[1])+'" style="max-width:100%;border-radius:10px;box-shadow:0 4px 15px rgba(0,0,0,0.5);"></div>'); return; }
 }
 if(l.startsWith('- ')){ if(!list){out.push('<ul>');list=true} out.push('<li>'+inl(l.slice(2))+'</li>'); return; }
 if(list){out.push('</ul>');list=false}
-if(!l) return;
-out.push(l.startsWith('## ') ? '<h2 style="color:var(--blue);border-left:4px solid var(--blue);padding-left:12px;margin:24px 0 12px;">'+inl(l.slice(3))+'</h2>' : '<p>'+inl(l)+'</p>');
+const h=l.match(/^##\s*(.+)$/);
+out.push(h ? '<h2 style="color:var(--blue);border-left:4px solid var(--blue);padding-left:12px;margin:24px 0 12px;">'+inl(h[1])+'</h2>' : '<p>'+inl(l)+'</p>');
 });
 if(list) out.push('</ul>');
 return out.join('');
