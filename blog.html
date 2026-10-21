@@ -12,22 +12,22 @@ gtag('config','G-TQ2EWFFFQJ');
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ===== SEO (remplacé dynamiquement quand un article est ouvert) ===== -->
+<!-- ===== SEO ===== -->
 <title>Blog | Design, montage et IA — Josy Ratovo</title>
 <meta name="description" content="Le blog de Josy Ratovo : conseils et réflexions sur le design graphique, le montage vidéo, l'intelligence artificielle.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#070a0e">
-<link rel="canonical" href="https://rajosyportfolio.netlify.app/blog.html">
+<link rel="canonical" href="https://portfolio-josy-ratovo.vercel.app/blog.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Josy Ratovo">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:title" content="Blog | Design, montage et IA — Josy Ratovo">
 <meta property="og:description" content="Conseils et réflexions sur le design, le montage vidéo et l'IA.">
-<meta property="og:url" content="https://rajosyportfolio.netlify.app/blog.html">
-<meta property="og:image" content="https://rajosyportfolio.netlify.app/image/blog.jpg">
+<meta property="og:url" content="https://portfolio-josy-ratovo.vercel.app/blog.html">
+<meta property="og:image" content="https://portfolio-josy-ratovo.vercel.app/image/blog.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Blog","name":"Blog de Josy Ratovo","url":"https://rajosyportfolio.netlify.app/blog.html","inLanguage":"fr","author":{"@type":"Person","name":"Josy Ratovo"}}
+{"@context":"https://schema.org","@type":"Blog","name":"Blog de Josy Ratovo","url":"https://portfolio-josy-ratovo.vercel.app/blog.html","inLanguage":"fr","author":{"@type":"Person","name":"Josy Ratovo"}}
 </script>
 
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -74,7 +74,7 @@ a{color:inherit}
 .article h1{font-size:34px;line-height:1.25;margin-bottom:14px}
 .meta{display:flex;flex-wrap:wrap;gap:18px;color:var(--text-muted);font-size:14px;padding-bottom:22px;margin-bottom:30px;border-bottom:1px solid rgba(255,255,255,.1)}
 .meta i{color:var(--orange-accent);margin-right:6px}
-.content h2{font-size:22px;margin:48px 0 18px;padding-left:14px;border-left:4px solid var(--orange-accent)}
+.content h2{font-size:22px;margin:48px 0 18px;padding-left:14px;border-left:4px solid var(--blue-neon);color:var(--blue-neon)}
 .content p{line-height:1.8;color:#cbd5e0;margin-bottom:20px;font-size:16px}
 .content ul{list-style:none;margin:8px 0}
 .content li{background:var(--card-bg);border:1px solid rgba(255,255,255,.06);border-left:3px solid var(--orange-accent);border-radius:8px;padding:14px 16px;margin-bottom:12px;line-height:1.7;color:#cbd5e0;font-size:15.5px}
@@ -214,7 +214,7 @@ appId:"1:49013469804:web:5a72c64ddc9652cdf71e49",
 measurementId:"G-3N3Z537MDP"
 });
 const db = getFirestore(app);
-const BASE = 'https://rajosyportfolio.netlify.app/';
+const BASE = 'https://portfolio-josy-ratovo.vercel.app/';
 
 const CATS = {
 design:{l:'Design',c:'#ff6b00',i:'fa-palette'},
@@ -223,7 +223,6 @@ ia:{l:'IA',c:'#8b5cf6',i:'fa-robot'},
 autre:{l:'Autre',c:'#94a3b8',i:'fa-layer-group'}
 };
 
-// Article déjà publié, conservé tel quel
 const DEFAULT = [{
 slug:'profil-creatif-polyvalent', cat:'autre', date:'2026-09-24', cover:'image/blog.jpg',
 title:'Pourquoi miser sur un profil créatif polyvalent ?',
@@ -255,6 +254,10 @@ function md(t){
 const out=[]; let list=false, hn=0;
 String(t||'').split('\n').forEach(l=>{
 l=l.trim();
+if(l.startsWith('![') && l.includes('](')){
+const match = l.match(/^!\[(.*?)\]\((.*?)\)$/);
+if(match){ if(list){out.push('</ul>');list=false} out.push('<div style="text-align:center;margin:24px 0;"><img src="'+match[2]+'" alt="'+esc(match[1])+'" style="max-width:100%;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.08);"></div>'); return; }
+}
 if(l.startsWith('- ')){ if(!list){out.push('<ul>');list=true} out.push('<li>'+inl(l.slice(2))+'</li>'); return; }
 if(list){out.push('</ul>');list=false}
 if(!l) return;
@@ -350,7 +353,7 @@ setMeta('meta[property="og:type"]','content','article');
 setMeta('meta[property="og:title"]','content',title);
 setMeta('meta[property="og:description"]','content',desc);
 setMeta('meta[property="og:url"]','content',url);
-if(a.cover && !a.cover.startsWith('data:')) setMeta('meta[property="og:image"]','content',abs(a.cover));
+if(a.cover && !a.cover.startsWith('data:')) setMeta('meta[property="og:image]','content',abs(a.cover));
 const ld = document.createElement('script'); ld.type='application/ld+json';
 ld.textContent = JSON.stringify([
 {"@context":"https://schema.org","@type":"BlogPosting","headline":a.title,"description":desc,"datePublished":a.date,"inLanguage":"fr","articleSection":c.l,"mainEntityOfPage":url,"image":(a.cover&&!a.cover.startsWith('data:'))?abs(a.cover):undefined,"author":{"@type":"Person","name":"Josy Ratovo"}},
