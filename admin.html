@@ -14,7 +14,7 @@ body{background:var(--bg);color:#fff;padding:20px;display:flex;flex-direction:co
 h1{font-size:24px;margin-bottom:6px}
 h2{font-size:18px;margin-bottom:16px;color:var(--blue)}
 .muted{color:var(--muted);font-size:14px;line-height:1.6}
-.btn{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;border:none;border-radius:8px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer;transition:transform .2s}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;border:none;border-radius:8px;padding:11px 20px;font-weight:700;font-size:14px;cursor:pointer;transition:transform .2s;text-decoration:none}
 .btn:hover{transform:translateY(-2px)}
 .btn.sec{background:transparent;border:1px solid rgba(255,255,255,.2)}
 .btn.blue-btn{background:var(--blue);color:#070a0e}
@@ -35,6 +35,8 @@ textarea{min-height:260px;resize:vertical;line-height:1.6}
 .badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:12px;margin-right:6px}
 .on{background:#14532d}.off{background:#713f12}
 .btns{display:flex;gap:6px;flex-wrap:wrap}
+#app{width:100%;display:flex;flex-direction:column;align-items:center}
+#app[hidden]{display:none}
 #preview{display:none;margin-top:18px;padding:18px;background:#0b0f14;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
 #preview h2{color:var(--blue);border-left:4px solid var(--blue);padding-left:12px;margin:24px 0 12px}
 #preview p{color:#cbd5e0;line-height:1.7;margin-bottom:14px}
@@ -58,7 +60,7 @@ input[type=file]{padding:9px}
 <p id="msg"></p>
 </section>
 
-<div id="app" hidden style="width:100%;display:flex;flex-direction:column;align-items:center">
+<div id="app" hidden>
 
 <section class="box">
 <div class="top">
@@ -109,11 +111,7 @@ input[type=file]{padding:9px}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { getAuth, GoogleAuthProvider, signInWithRedirect, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-// ...
-
-
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
 const app = initializeApp({
 apiKey:"AIzaSyCBv8OFQyvjvSwYvPKS6A-Nc936I2ag8y8",
@@ -154,7 +152,9 @@ function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show');
 
 let items = [], editing = null;
 
-$('btnLogin').onclick = async () => {$('msg').textContent = '';
+// ---------- CONNEXION ----------
+$('btnLogin').onclick = async () => {
+$('msg').textContent = '';
 try{ await signInWithPopup(auth, new GoogleAuthProvider()); }
 catch(e){ $('msg').textContent = 'Connexion impossible : ' + (e.code || e.message); }
 };
@@ -171,6 +171,7 @@ $('login').hidden = false; $('app').hidden = true;
 }
 });
 
+// ---------- LISTE DES ARTICLES ----------
 async function loadList(){
 try{
 const s = await getDocs(collection(db,'articles'));
@@ -207,16 +208,23 @@ catch(_){ toast('Suppression impossible'); }
 }
 });
 
+// ---------- FORMULAIRE ----------
 function fill(a){
 editing = a.slug;
-$('formTitle').textContent = 'Modifier l\'article';$('title').value = a.title||''; $('cat').value = a.cat\vert{}\vert{}'autre';$('date').value = a.date||today();
-$('excerpt').value = a.excerpt\vert{}\vert{}''; setCover(a.cover);$('content').value = a.content||'';
-$('pub').checked = !!a.published; $('preview').style.display = 'none';
+$('formTitle').textContent = 'Modifier l\'article';
+$('title').value = a.title||'';
+$('cat').value = a.cat || 'autre';
+$('date').value = a.date || today();
+$('excerpt').value = a.excerpt || '';
+setCover(a.cover);
+$('content').value = a.content||'';
+$('pub').checked = !!a.published;
+$('preview').style.display = 'none';
 }
 function resetForm(){
 editing = null; $('formTitle').textContent = 'Nouvel article';
 ['title','excerpt','content'].forEach(i=>$(i).value=''); setCover('');
-$('cat').value='design';$('date').value=today(); $('pub').checked=true; $('preview').style.display='none';
+$('cat').value='design'; $('date').value=today(); $('pub').checked=true; $('preview').style.display='none';
 }
 $('btnNew').onclick = resetForm;
 $('btnPrev').onclick = () => {
@@ -226,7 +234,7 @@ p.style.display = p.style.display==='block' ? 'none' : 'block';
 };
 
 $('btnSave').onclick = async () => {
-const title = $('title').value.trim(), content =$('content').value.trim();
+const title = $('title').value.trim(), content = $('content').value.trim();
 if(!title || !content){ toast('Titre et contenu obligatoires'); return; }
 let slug = editing;
 if(!slug){
@@ -237,7 +245,7 @@ while(items.some(x=>x.slug===slug)) slug = base + '-' + n++;
 try{
 await setDoc(doc(db,'articles',slug), {
 title, cat:$('cat').value, excerpt:$('excerpt').value.trim(), cover:$('cover').value.trim(),
-content:$('content').value, date:$('date').value \vert{}\vert{} today(), published:$('pub').checked,
+content:$('content').value, date:$('date').value || today(), published:$('pub').checked,
 updated:new Date().toISOString()
 });
 toast('Article enregistré'); editing = slug; await loadList();
@@ -280,7 +288,8 @@ e.target.value = '';
 $('btnCoverClear').onclick = () => setCover('');
 
 // Insertion d'image au milieu du contenu
-$('btnInsertInlineImg').onclick = () => $('inlineImgFile').click();$('inlineImgFile').addEventListener('change', async e => {
+$('btnInsertInlineImg').onclick = () => $('inlineImgFile').click();
+$('inlineImgFile').addEventListener('change', async e => {
 const f = e.target.files[0]; if(!f) return;
 try{
 const base64Img = await shrink(f);
