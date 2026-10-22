@@ -42,6 +42,12 @@ textarea{min-height:260px;resize:vertical;line-height:1.6}
 #preview p{color:#cbd5e0;line-height:1.7;margin-bottom:14px}
 #preview img{max-width:100%;border-radius:10px;margin:16px 0;border:1px solid rgba(255,255,255,.1)}
 #preview li{list-style:none;background:var(--card);border-left:3px solid var(--orange);padding:10px 12px;margin-bottom:8px;border-radius:6px;color:#cbd5e0}
+#photoList{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+#photoList:empty{display:none}
+.ph{display:inline-flex;align-items:center;gap:6px;background:#0b0f14;border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:4px 6px 4px 4px;font-size:12px;color:var(--muted)}
+.ph img{width:44px;height:34px;object-fit:cover;border-radius:5px}
+.ph b{color:#fff}
+.ph button{background:#9b1c1c;color:#fff;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;line-height:1;font-size:14px}
 #coverBox{display:none;align-items:center;gap:14px;margin-top:12px}
 #coverImg{width:160px;height:100px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.15)}
 input[type=file]{padding:9px}
@@ -95,7 +101,8 @@ input[type=file]{padding:9px}
 </div>
 
 <textarea id="content" placeholder="Votre texte…"></textarea>
-<p class="muted" style="margin-top:8px">Mise en forme : une ligne vide sépare les paragraphes, 2 ou 3 lignes vides ajoutent de l'espace · <b style="color:var(--blue)">## Titre</b> pour un sous-titre en bleu · <b>- </b> pour une liste · <b>**gras**</b> pour le gras.</p>
+<div id="photoList" aria-label="Photos insérées"></div>
+<p class="muted" style="margin-top:8px">Mise en forme : une ligne vide sépare les paragraphes, 2 ou 3 lignes vides ajoutent de l'espace · <b style="color:var(--blue)">## Titre</b> pour un sous-titre en bleu · <b>- </b> pour une liste · <b>**gras**</b> pour le gras · Une photo apparaît ici sous la forme courte <b>![Photo 1](#p1)</b> : déplace cette ligne pour changer sa place (la vraie image s'affiche dans l'aperçu et sur le blog).</p>
 <div class="check"><input type="checkbox" id="pub" checked><label for="pub" style="margin:0;color:#fff">Publié (visible sur le blog)</label></div>
 <div class="actions">
 <button class="btn" id="btnSave"><i class="fas fa-save"></i> Enregistrer</button>
@@ -157,6 +164,31 @@ const today = () => new Date().toISOString().slice(0,10);
 function toast(m){ const t=$('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400); }
 
 let items = [], editing = null;
+
+// ---------- PHOTOS DANS LE TEXTE (version courte) ----------
+// Dans le champ texte, une photo s'écrit ![Photo 1](#p1) ; la vraie image est gardée à part
+// et remise dans le texte au moment de l'aperçu et de l'enregistrement.
+let photos = {}, photoN = 0;
+const PH = /!\[([^\]]*)\]\(#(p\d+)\)/g;
+const expand = t => String(t||'').replace(PH, (m, alt, id) => photos[id] ? '!['+alt+']('+photos[id]+')' : m);
+function compact(t){
+return String(t||'').replace(/!\[([^\]]*)\]\((data:image\/[^)]+)\)/g, (m, alt, src) => {
+const id = 'p' + (++photoN); photos[id] = src;
+return '![Photo '+photoN+'](#'+id+')';
+});
+}
+function renderPhotos(){
+const txt = $('content').value;
+const ids = Object.keys(photos).filter(id => txt.includes('(#'+id+')'));
+$('photoList').innerHTML = ids.map(id => '<span class="ph"><img src="'+photos[id]+'" alt=""><b>Photo '+id.slice(1)+'</b><button type="button" data-p="'+id+'" aria-label="Retirer la photo '+id.slice(1)+'">&times;</button></span>').join('');
+}
+$('content').addEventListener('input', renderPhotos);
+$('photoList').addEventListener('click', e => {
+const b = e.target.closest('button[data-p]'); if(!b) return;
+const id = b.dataset.p, ta = $('content');
+ta.value = ta.value.replace(new RegExp('\\n*!\\[[^\\]]*\\]\\(#'+id+'\\)\\n*','g'), '\n\n');
+delete photos[id]; renderPhotos();
+});
 
 // ---------- CONNEXION ----------
 $('btnLogin').onclick = async () => {
@@ -223,25 +255,30 @@ $('cat').value = a.cat || 'autre';
 $('date').value = a.date || today();
 $('excerpt').value = a.excerpt || '';
 setCover(a.cover);
-$('content').value = a.content||'';
+photos = {}; photoN = 0;
+$('content').value = compact(a.content||'');
+renderPhotos();
 $('pub').checked = !!a.published;
 $('preview').style.display = 'none';
 }
 function resetForm(){
-editing = null; $('formTitle').textContent = 'Nouvel article';
+editing = null; photos = {}; photoN = 0; $('formTitle').textContent = 'Nouvel article';
 ['title','excerpt','content'].forEach(i=>$(i).value=''); setCover('');
 $('cat').value='design'; $('date').value=today(); $('pub').checked=true; $('preview').style.display='none';
+renderPhotos();
 }
 $('btnNew').onclick = resetForm;
 $('btnPrev').onclick = () => {
 const p = $('preview');
-p.innerHTML = '<h1 style="font-size:22px;margin-bottom:14px">'+esc($('title').value)+'</h1>'+md($('content').value);
+p.innerHTML = '<h1 style="font-size:22px;margin-bottom:14px">'+esc($('title').value)+'</h1>'+md(expand($('content').value));
 p.style.display = p.style.display==='block' ? 'none' : 'block';
 };
 
 $('btnSave').onclick = async () => {
 const title = $('title').value.trim(), content = $('content').value.trim();
 if(!title || !content){ toast('Titre et contenu obligatoires'); return; }
+const full = expand($('content').value);
+if(full.length + ($('cover').value||'').length > 900000){ toast('Article trop lourd : retirez une photo ou prenez-en de plus légères'); return; }
 let slug = editing;
 if(!slug){
 slug = slugify(title);
@@ -251,7 +288,7 @@ while(items.some(x=>x.slug===slug)) slug = base + '-' + n++;
 try{
 await setDoc(doc(db,'articles',slug), {
 title, cat:$('cat').value, excerpt:$('excerpt').value.trim(), cover:$('cover').value.trim(),
-content:$('content').value, date:$('date').value || today(), published:$('pub').checked,
+content:full, date:$('date').value || today(), published:$('pub').checked,
 updated:new Date().toISOString()
 });
 toast('Article enregistré'); editing = slug; await loadList();
@@ -265,7 +302,7 @@ const i = $('coverImg');
 if(v){ i.src = v; $('coverBox').style.display = 'flex'; }
 else{ i.removeAttribute('src'); $('coverBox').style.display = 'none'; }
 }
-function shrink(file){
+function shrink(file, max = 600000){
 return new Promise((res, rej) => {
 const img = new Image(), u = URL.createObjectURL(file);
 img.onload = () => {
@@ -277,7 +314,7 @@ c.width = w; c.height = Math.round(img.height * w / img.width);
 x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
 x.drawImage(img, 0, 0, c.width, c.height);
 out = c.toDataURL('image/jpeg', q);
-if(out.length < 600000) break;
+if(out.length < max) break;
 w = Math.round(w * .8); q = Math.max(.6, q - .05);
 }
 res(out);
@@ -287,7 +324,7 @@ img.onerror = rej; img.src = u;
 }
 $('coverFile').addEventListener('change', async e => {
 const f = e.target.files[0]; if(!f) return;
-try{ setCover(await shrink(f)); toast('Image de couverture ajoutée'); }
+try{ setCover(await shrink(f, 320000)); toast('Image de couverture ajoutée'); }
 catch(_){ toast('Image illisible'); }
 e.target.value = '';
 });
@@ -298,12 +335,13 @@ $('btnInsertInlineImg').onclick = () => $('inlineImgFile').click();
 $('inlineImgFile').addEventListener('change', async e => {
 const f = e.target.files[0]; if(!f) return;
 try{
-const base64Img = await shrink(f);
+const base64Img = await shrink(f, 220000);
+const id = 'p' + (++photoN); photos[id] = base64Img;
 const txtArea = $('content');
-const imgTag = '\n\n![Image](' + base64Img + ')\n\n';
+const imgTag = '\n\n![Photo ' + photoN + '](#' + id + ')\n\n';
 const start = txtArea.selectionStart, end = txtArea.selectionEnd;
 txtArea.value = txtArea.value.substring(0, start) + imgTag + txtArea.value.substring(end);
-toast('Photo insérée dans l\'article');
+renderPhotos(); toast('Photo insérée dans l\'article');
 }catch(_){ toast('Échec de l\'insertion'); }
 e.target.value = '';
 });
