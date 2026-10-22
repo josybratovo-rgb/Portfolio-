@@ -79,8 +79,14 @@ a{color:inherit}
 .content ul{list-style:none;margin:8px 0}
 .content li{background:var(--card-bg);border:1px solid rgba(255,255,255,.06);border-left:3px solid var(--orange-accent);border-radius:8px;padding:14px 16px;margin-bottom:12px;line-height:1.7;color:#cbd5e0;font-size:15.5px}
 .content strong{color:#fff}
-.cta{display:flex;justify-content:center;margin-top:56px}
-.cta a{background:var(--orange-accent);color:#fff;text-decoration:none;font-weight:700;padding:13px 30px;border-radius:8px;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 18px rgba(224,94,0,.35)}
+
+/* Petite icône de partage en bas de l'article */
+.share-mini{display:flex;justify-content:center;margin-top:22px}
+.share-mini button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:var(--card-bg);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,border-color .2s,color .2s}
+.share-mini button:hover{border-color:var(--blue-neon);color:var(--blue-glow);transform:translateY(-2px)}
+
+.cta{display:flex;justify-content:center;margin-top:28px}
+.cta a{display:inline-flex;align-items:center;gap:8px;background:var(--orange-accent);color:#fff;text-decoration:none;font-weight:700;padding:13px 30px;border-radius:8px;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 18px rgba(224,94,0,.35)}
 .cta a:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(224,94,0,.5)}
 .share-widget{position:fixed;bottom:30px;right:30px;z-index:1500;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
 .share-fab{width:58px;height:58px;border-radius:50%;border:none;background:var(--orange-accent);color:#fff;font-size:22px;cursor:pointer;display:flex;justify-content:center;align-items:center;box-shadow:0 6px 20px rgba(224,94,0,.45);transition:transform .3s,background .3s}
@@ -216,6 +222,8 @@ measurementId:"G-3N3Z537MDP"
 const db = getFirestore(app);
 const BASE = 'https://portfolio-josy-ratovo.vercel.app/';
 
+const INSTAGRAM_URL = 'https://www.instagram.com/josy.ratovo/';
+
 const CATS = {
 design:{l:'Design',c:'#ff6b00',i:'fa-palette'},
 montage:{l:'Montage',c:'#00b4d8',i:'fa-film'},
@@ -250,18 +258,29 @@ Recruter un profil polyvalent, c'est choisir la fluidité, la réactivité et un
 
 const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const inl = s => esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+
+// Titre bleu : "## Titre" ou "##Titre" (l'espace n'est plus obligatoire)
+const HEAD = /^##(?!#)\s*(\S.*)$/;
+
+// Mise en forme : 1 ligne vide = nouveau paragraphe, 2 ou 3 lignes vides = espace en plus
 function md(t){
-const out=[]; let list=false, hn=0;
+const out=[]; let list=false, hn=0, blanks=0;
 String(t||'').split('\n').forEach(l=>{
 l=l.trim();
+if(!l){ blanks++; return; }
+if(blanks>1){
+if(list){out.push('</ul>');list=false}
+out.push('<div style="height:'+((blanks-1)*28)+'px"></div>');
+}
+blanks=0;
 if(l.startsWith('![') && l.includes('](')){
 const match = l.match(/^!\[(.*?)\]\((.*?)\)$/);
 if(match){ if(list){out.push('</ul>');list=false} out.push('<div style="text-align:center;margin:24px 0;"><img src="'+match[2]+'" alt="'+esc(match[1])+'" style="max-width:100%;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.08);"></div>'); return; }
 }
 if(l.startsWith('- ')){ if(!list){out.push('<ul>');list=true} out.push('<li>'+inl(l.slice(2))+'</li>'); return; }
 if(list){out.push('</ul>');list=false}
-if(!l) return;
-out.push(l.startsWith('## ') ? '<h2 id="s'+(hn++)+'">'+inl(l.slice(3))+'</h2>' : '<p>'+inl(l)+'</p>');
+const h = l.match(HEAD);
+out.push(h ? '<h2 id="s'+(hn++)+'">'+inl(h[1])+'</h2>' : '<p>'+inl(l)+'</p>');
 });
 if(list) out.push('</ul>');
 return out.join('');
@@ -330,11 +349,13 @@ return;
 }
 const c = CATS[a.cat] || CATS.autre;
 const url = BASE+'blog.html?a='+encodeURIComponent(a.slug);
-const heads = String(a.content||'').split('\n').map(l=>l.trim()).filter(l=>l.startsWith('## ')).map(l=>l.slice(3).replace(/\*\*/g,''));
+const heads = String(a.content||'').split('\n').map(l=>l.trim()).filter(l=>HEAD.test(l)).map(l=>l.match(HEAD)[1].replace(/\*\*/g,''));
 const toc = heads.length>=3 ? `<details class="toc"${innerWidth>600?' open':''}><summary><i class="fas fa-list"></i> Sommaire</summary><ol>${heads.map((h,i)=>`<li><a href="#s${i}">${esc(h)}</a></li>`).join('')}</ol></details>` : '';
 const i = arts.findIndex(x => x.slug===slug), newer = arts[i-1], older = arts[i+1];
 const link = (x,label,ic,cls) => `<a class="${cls}" href="blog.html?a=${encodeURIComponent(x.slug)}"><small><i class="fas ${ic}"></i> ${label}</small><b>${esc(x.title)}</b></a>`;
 const pn = (newer||older) ? `<nav class="pn" aria-label="Autres articles">${older?link(older,'Article précédent','fa-arrow-left','l'):'<span></span>'}${newer?link(newer,'Article suivant','fa-arrow-right','r'):'<span></span>'}</nav>` : '';
+const follow = `<div class="cta"><a href="${esc(INSTAGRAM_URL)}" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Me suivre sur Instagram</a></div>`;
+const shareEnd = `<div class="share-mini"><button type="button" onclick="shareMini(event)" aria-label="Partager cet article" title="Partager"><i class="fas fa-share-alt"></i></button></div>`;
 v.innerHTML = `<nav class="crumbs" aria-label="Fil d'Ariane"><a href="index.html">Accueil</a><i class="fas fa-chevron-right"></i><a href="blog.html">Blog</a><i class="fas fa-chevron-right"></i><a href="blog.html?s=${a.cat}">${c.l}</a></nav>
 ${a.cover?`<div class="cover"><img src="${esc(a.cover)}" alt="${esc(a.title)}" decoding="async"></div>`:''}
 <span class="tag" style="--c:${c.c}">${c.l}</span>
@@ -342,7 +363,8 @@ ${a.cover?`<div class="cover"><img src="${esc(a.cover)}" alt="${esc(a.title)}" d
 <div class="meta"><span><i class="fas fa-user"></i>Josy Ratovo</span><span><i class="far fa-calendar"></i>${fmt(a.date)}</span><span><i class="far fa-clock"></i>${rt(a.content)} min de lecture</span></div>
 ${toc}
 <div class="content">${md(a.content)}</div>
-<div class="cta"><a href="index.html#contact"><i class="fas fa-envelope"></i>&nbsp; Discutons de votre projet</a></div>
+${follow}
+${shareEnd}
 ${pn}
 <div class="all"><a href="blog.html"><i class="fas fa-th-large"></i> Voir tous les articles</a></div>`;
 const title = a.title+' | Josy Ratovo', desc = a.excerpt || a.title;
@@ -353,7 +375,7 @@ setMeta('meta[property="og:type"]','content','article');
 setMeta('meta[property="og:title"]','content',title);
 setMeta('meta[property="og:description"]','content',desc);
 setMeta('meta[property="og:url"]','content',url);
-if(a.cover && !a.cover.startsWith('data:')) setMeta('meta[property="og:image]','content',abs(a.cover));
+if(a.cover && !a.cover.startsWith('data:')) setMeta('meta[property="og:image"]','content',abs(a.cover));
 const ld = document.createElement('script'); ld.type='application/ld+json';
 ld.textContent = JSON.stringify([
 {"@context":"https://schema.org","@type":"BlogPosting","headline":a.title,"description":desc,"datePublished":a.date,"inLanguage":"fr","articleSection":c.l,"mainEntityOfPage":url,"image":(a.cover&&!a.cover.startsWith('data:'))?abs(a.cover):undefined,"author":{"@type":"Person","name":"Josy Ratovo"}},
@@ -400,6 +422,11 @@ if(p==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+e
 if(p==='copy'){ try{ await navigator.clipboard.writeText(url); showToast('Lien copié !'); }catch(e){ prompt('Copie ce lien :',url); } }
 if(p==='native'){ try{ await navigator.share({title:text,url}); }catch(e){} }
 closeShare();
+};
+window.shareMini = ev => {
+ev.stopPropagation();
+if(navigator.share){ window.shareTo('native'); }
+else { widget.classList.add('open'); icon.className='fas fa-times'; }
 };
 document.addEventListener('click', e => { if(!widget.contains(e.target)) closeShare(); });
 document.addEventListener('keydown', e => { if(e.key==='Escape') closeShare(); });
